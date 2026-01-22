@@ -1,4 +1,4 @@
-### CO1111
+### CO1111 - Treasure Hunt
 
 ## Project, index.html link:
 https://hunter-cs056.github.io/CO1111/
