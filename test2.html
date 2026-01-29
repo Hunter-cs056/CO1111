@@ -16,6 +16,16 @@
             listElement.appendChild(listItem);
           });
         });
+            fetch("https://codecyprus.org/th/api/list?include-finished")
+        .then(response => response.json())
+        .then(jsonObject => {
+          console.log(jsonObject);
+          jsonObject.treasureHunts.forEach(hunt => {
+            let listItem = document.createElement("li");
+            listItem.innerHTML = hunt.name;
+            listElement.appendChild(listItem);
+          });
+        });
     </script>
   </body>
 </html>
