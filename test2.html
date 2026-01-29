@@ -1,5 +1,6 @@
 <html>
   <script>
+    const listElement = document.getElementById("list");
     fetch("https://codecyprus.org/th/api/list")
 .then(response => response.json()) //Parse JSON text to JavaScript object
 .then(jsonObject => {
@@ -8,7 +9,7 @@ console.log(jsonObject); //TODO - Success, do something with the data.
 
   </script>
   <body>
-    
+    <ul id="list"></ul>
   </body>
 </html>
 
