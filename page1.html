@@ -6,6 +6,14 @@
     <script>
       console.log(location.href);
       const params = new URLSearchParams(location.search);
+      params.get("paramName");
+      if (num1Exists && num2Exists) {
+    const num1 = params.get("num1");
+    const num2 = params.get("num2");
+    console.log(num1, num2);
+  } else {
+    alert("Both parameters need to be provided");
+  }
     </script>
 
 </html>
