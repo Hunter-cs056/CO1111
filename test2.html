@@ -5,16 +5,17 @@
     listItem.innerHTML = treasureHuntsArray[i].name;
     
     fetch("https://codecyprus.org/th/api/list")
-.then(response => response.json()) //Parse JSON text to JavaScript object
-.then(jsonObject => {
-console.log(jsonObject);
-});
+      .then(response => response.json())
+      .then(jsonObject => {
+        console.log(jsonObject);
+
     
-jsonObject.treasureHunts.forEach(hunt => {
-            let listItem = document.createElement("li");
-            listItem.innerHTML = hunt.name;
-   listElement.appendChild(listItem);
-});
+      jsonObject.treasureHunts.forEach(hunt => {
+        let listItem = document.createElement("li");
+        listItem.innerHTML = hunt.name;
+        listElement.appendChild(listItem);
+        });
+      });
   </script>
   <body>
     <ul id="list"></ul>
