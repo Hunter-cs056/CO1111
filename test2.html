@@ -12,7 +12,7 @@
 
           jsonObject.treasureHunts.forEach(hunt => {
             let listItem = document.createElement("li");
-            listItem.innerHTML = hunt.name;
+            listItem.innerHTML = "<a href='#'>" + treasureHuntsArray[i].name + "</a>";
             listElement.appendChild(listItem);
           });
         });
