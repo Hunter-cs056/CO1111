@@ -3,8 +3,6 @@
     fetch("https://codecyprus.org/th/api/list")
 .then(response => response.json()) //Parse JSON text to JavaScript object
 .then(jsonObject => {
-  let listItem = document.createElement("li");
-  listItem.innerHTML = treasureHuntsArray[i].name;
 console.log(jsonObject); //TODO - Success, do something with the data.
 });
 
