@@ -1,8 +1,5 @@
 <html>
-<body>
-  <h1> Page 1 </h1>
-  <a href="page2.html?num1=5&num2=10"> Page 2 </a>
-</body>
+<body>  
   <script>
   const params = new URLSearchParams(location.search);
   const num1Exists = params.has("num1");
@@ -20,5 +17,10 @@
     alert("Both parameters need to be provided");
   }
 </script>
+  <main>
+  <h1> Page 1 </h1>
+  <a href="page2.html?num1=5&num2=10"> Page 2 </a>
+  </main>
+</body>
 </html>
 
