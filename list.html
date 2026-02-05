@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Treasure Hunts</title>
+    <style>
+
+        #treasureHuntList {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #treasureHuntList li {
+            background-color: deepskyblue;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 10px;
+            padding: 20px 20px;
+            border-radius: 10px;
+            border: 1px solid black;
+            display: block;
+            text-decoration: none;
+        }
+
+        #treasureHuntList li:hover {
+            background-color: dodgerblue;
+        }
+
+        #treasureHuntList li:active {
+            background-color: black;
+        }
+
+        #treasureHuntList li a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Treasure Hunts</h1>
+    <ul id="treasureHuntList"></ul>
+    <script>
+        let thcJSONResponse = '{\n' + ' "treasureHunts": [\n' + ' {\n' +
+            ' "uuid": "f1a6332f-27a4-4522-b52e-4937d5d747c7",\n' +
+            ' "name": "name-0",\n' + ' "description": "description-0",\n' +
+            ' "ownerEmail": "email-0@example.com",\n' +
+            ' "secretCode": "abc1234",\n' +
+            ' "visibility": "PRIVATE",\n' +
+            ' "startsOn": 1568883640616,\n' +
+            ' "endsOn": 1568887240616,\n' +
+            ' "maxDuration": 720000,\n' +
+            ' "shuffled": false,\n' +
+            ' "requiresAuthentication": false,\n' +
+            ' "emailResults": true,\n' +
+            ' "hasPrize": false\n' +
+            ' },\n' +
+            ' {\n' +
+            ' "uuid": "05de92a7-6f7c-442c-a6c3-bd97a810002f",\n' +
+            ' "name": "name-1",\n' +
+            ' "description": "description-1",\n' +
+            ' "ownerEmail": "email-1@example.com",\n' +
+            ' "secretCode": "abc1234",\n' +
+            ' "visibility": "PUBLIC",\n' +
+            ' "startsOn": 1568883640617,\n' +
+            ' "endsOn": 1568887240617,\n' +
+            ' "maxDuration": 360000,\n' +
+            ' "shuffled": false,\n' +
+            ' "requiresAuthentication": false,\n' +
+            ' "emailResults": true,\n' +
+            ' "hasPrize": true\n' +
+            ' }\n' + ' ],\n' +
+            ' "status": "OK"\n' +
+            '}';
+
+        let thcResponse = JSON.parse(thcJSONResponse);
+        const treasureHuntList = document.getElementById('treasureHuntList');
+        if (thcResponse.status !== "OK") {
+            alert("Something went wrong");
+        }
+        else {
+            thcResponse.treasureHunts.forEach(hunt => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.textContent = hunt.name;
+                link.href = `start.html?uuid=${hunt.uuid}`;
+                listItem.appendChild(link);
+                treasureHuntList.appendChild(listItem);
+            });
+        }
+    </script>
+    <ul></ul>
+</body>
+</html>
