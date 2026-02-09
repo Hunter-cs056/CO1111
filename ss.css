@@ -20,3 +20,31 @@ body{
     text-decoration: none;  /* removes the underline*/
     font-family: 'Press Start 2P', monospace;
 }
+.title {
+	text-align: left;
+}
+.NavList {
+	justify-content: flex-end;
+	display: flex;
+	margin-left: auto;
+}
+.item {
+	text-decoration: none;
+
+}
+.PageTitle {
+	text-align: center;
+
+}
+.MainText {
+	text-align: center;
+	
+}
+.Footer {
+	text-align: center;
+}
+.box {
+	border-radius: 10px;
+	width: 100%;
+	max-width: 320px;
+}
