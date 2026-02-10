@@ -10,13 +10,13 @@ const API_LINK= "https://codecyprus.org/th/api";
 /* ===========================
     GET  TREASURE HUNTS
    ========================== */
-async function fetchTreasureHunt() {
+async function getTreasureHunts() {
     try {
         //Request the data and wait for a response to store as JSON object
         const response = await fetch(`${API_LINK}/list`);
         //Wait for response
         const data = await response.json();
-        //If the response was "OK" we call the render TreasureHunts Function
+        //If the response was "ok" we call the render TreasureHunts Function
         if (data.status === "OK") {
             //Call the function with the array of TrHunts as parameter
             renderTreasureHunts(data.treasureHunts);
@@ -55,10 +55,54 @@ function renderTreasureHunts(list) {
         container.appendChild(option);
     });
 }
+/* ===========================
+   START GAME
+   ========================== */
+//Function to start the Game
+async function startGame(){
+    //Checks if the player has selected a TrHunt
+    const selected = document.querySelector("input[name='TreasureHunt']:checked");
+    //If not display an alert
+    if (!selected) {
+        alert("Please select a TreasureHunt first!");
+        return;
+    }
+    //Variable to store the (hunt.id) of the selected TreasureHunt
+    selectedTreasureHunt = selected.value;
 
+    //For now a random Player name just for testing
+    const playerName ="Player" + Math.floor(Math.random() * 1000);
+    //Now we call the API while using the playerName and TreasureHuntId as parameters
+    try{
+        const response = await fetch(`${API_LINK}/start?player=${playerName}&app=webapp&treasure-hunt-id=${selectedTreasureHunt}`);
+        const data = await response.json();
+        //If the response was "ok"
+        if (data.status === "OK") {
+            //Create a variable to store the session id
+            sessionId=data.session;
+            //Make the SelectionArea section  not visible
+            document.getElementById("SelectionArea").style.display="none";
+            //Then make the GameArea section visible(It was  invisible at start)
+            document.getElementById("GameArea").style.display="block";
+            //Call the function that loads the Questions
+            loadQuestion();
+        }
+        else {
+            console.error("Start Error: " , data.errorMessages);
+        }
+    }catch(error) {
+        console.error("Network Error: " + error);
+    }
+}
+/* ===========================
+   EVENT LISTENER
+   ========================== */
+document.getElementById("submitTrHunt").addEventListener("click", startGame);
 
-
-
+/* ===========================
+   INITIAL LOAD(WHEN APP LAUNCHES)
+   ========================== */
+getTreasureHunts();
 
 
 
