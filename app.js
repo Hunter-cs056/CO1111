@@ -70,15 +70,16 @@ async function startGame(){
     //Variable to store the (hunt.id) of the selected TreasureHunt
     selectedTreasureHunt = selected.value;
 
-    //For now a random Player name just for testing
+    //For now a random Player name just for testing(Later we will call the API and check if the error Msg for used Name)
     const playerName ="Player" + Math.floor(Math.random() * 1000);
     //Now we call the API while using the playerName and TreasureHuntId as parameters
     try{
+        //Call the API/start with ${playerName} and ${selectedTreasureHunt} as parameters on the URL
         const response = await fetch(`${API_LINK}/start?player=${playerName}&app=webapp&treasure-hunt-id=${selectedTreasureHunt}`);
         const data = await response.json();
         //If the response was "ok"
         if (data.status === "OK") {
-            //Create a variable to store the session id
+            //Assign to our variable the session id
             sessionId=data.session;
             //Make the SelectionArea section  not visible
             document.getElementById("SelectionArea").style.display="none";
@@ -94,6 +95,106 @@ async function startGame(){
         console.error("Network Error: " + error);
     }
 }
+
+/* ===========================
+   START GAME
+   ========================== */
+//Function to Load Questions
+async function loadQuestion() {
+    try{
+        //Call the API/question with ${sessionId} as parameter(sessionId was a result of the /start API)
+        const response = await fetch(`${API_LINK}/question?session=${sessionId}`);
+        const data = await response.json();
+        //First Display the error if there is one
+        if (data.status !== "OK") {
+            console.error("Question Error:", data.errorMessages);
+            return;
+        }
+        //Check if the selected treasureHunt is already completed
+        if(data.completed){
+            //Inform the user
+            document.getElementById("QuestionText").innerText="You have completed this TreasureHunt!";
+            //Empty out any question options
+            document.getElementById("AnswerArea").innerHTML="";
+            //Make all the buttons invisible
+            document.getElementById("SubmitAnswerBtn").style.display="none";
+            document.getElementById("SkipAnswerBtn").style.display="none";
+            document.getElementById("SendLocationBtn").style.display="none";
+            return;
+        }
+        //If no ERROR appears and the TrHunt is not completed already,the function will continue as expected
+
+        //Display the question Text
+        document.getElementById("QuestionText").innerText=data.questionText;
+
+        //Clear the previous Answer Area
+        const answerArea = document.getElementById("AnswerArea");
+        answerArea.innerHTML="";
+
+        //A switch handles each question type using data.questionType
+        //Cases will be the possible answer types: BOOLEAN/INTEGER/NUMERIC/MCQ/TEXT
+        switch (data.questionType){
+            //In case of boolean create 2 buttons for the 2 possible answers(True/False) of the same class
+            case "BOOLEAN":
+                answerArea.innerHTML=`
+                    <button class="boolBtn" data-value="true">True</button>
+                    <button class="boolBtn" data-value="false">False</button>
+                `;
+                //Select all btn with class="boolBtn" and add an Event listener
+                //On click call the submitAnswer() function with btn.dataset.value as the parameter
+                document.querySelectorAll(".boolBtn").forEach(btn=>{
+                    btn.addEventListener("click", ()=>submitAnswer(btn.dataset.value));
+                    });
+                break;
+            //In case of integer create an input box of type integer
+            case "INTEGER":
+                answerArea.innerHTML=`<input type="number" id="answerInput">`;
+                break;
+            //In case of a numeric create an input box of type number and add the step atrbute
+            case "NUMERIC":
+                answerArea.innerHTML=`<input type="number" step="0.01" id="answerInput">`;
+                break;
+            //In case of MCQ create buttons for each multiple choice answer
+            case "MCQ":
+                answerArea.innerHTML=`
+                    <button class="mcqBtn" data-value="A">A</button>
+                    <button class="mcqBtn" data-value="B">B</button>
+                    <button class="mcqBtn" data-value="C">C</button>
+                    <button class="mcqBtn" data-value="D">D</button>
+                `;
+                document.querySelectorAll(".mcqBtn").forEach(btn=>{
+                    btn.addEventListener("click", ()=>submitAnswer(btn.dataset.value));
+                });
+                break;
+            case "TEXT":
+                answerArea.innerHTML=`<input type="text" id="answerInput">`;
+                break;
+        }
+        //Skip button functionality that calls the skipQuestion() function
+        const skipBtn = document.getElementById("SkipAnswerBtn");
+        skipBtn.onclick = () =>{
+            if(data.canBeSkipped){
+                skipQuestion();
+            }
+            else {
+                alert("This Question cannot be skipped!");
+            }
+        }
+        //Location Requirement btn functionality
+        const locationBtn = document.getElementById("SendLocationBtn");
+        if(data.requiresLocation){
+            locationBtn.style.display="block";
+            locationBtn.onclick = sendLocation;
+        }else {
+            locationBtn.style.display="none";
+        }
+
+    }catch(error) {
+        console.error("Network Error: " + error);
+    }
+}
+
+
 /* ===========================
    EVENT LISTENER
    ========================== */
