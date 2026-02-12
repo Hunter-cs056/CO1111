@@ -3,8 +3,16 @@ body{
     font-family: 'Press Start 2P', monospace;
     margin: 0;
     padding: 0;
-    background-color: #000000;
+   	color: #9ef0c0;
     color: rgba(0, 255, 59, 0.78);
+	flex-direction: column;
+	background-color: #0c0c0c;
+}
+main, footer {
+	width: 100%;
+ 	max-width: 1200px;
+  	margin-left: auto;
+  	margin-right: auto;
 }
 /*border for the Navigation List*/
 .Card {
@@ -35,12 +43,6 @@ body{
 .MainText {
 	text-align: center;
 	
-}
-.footer {
-    text-align: center;
-    padding: 40px 0 30px;
-    margin-top: 40px;
-    background-color: black;
 }
 .box {
 	border-radius: 10px;
