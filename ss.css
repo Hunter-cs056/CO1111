@@ -20,9 +20,7 @@ body{
     text-decoration: none;  /* removes the underline*/
     font-family: 'Press Start 2P', monospace;
 }
-.title {
-	text-align: left;
-}
+
 .NavList {
 	justify-content: flex-end;
 	display: flex;
@@ -42,11 +40,6 @@ body{
 }
 .Footer {
 	text-align: center;
-}
-.box {
-	border-radius: 10px;
-	width: 100%;
-	max-width: 320px;
 }
 .FooterSection {
 	background-color: black;
