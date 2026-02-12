@@ -15,17 +15,19 @@ body{
     text-align: center;
     list-style: none; /* removes the bullets*/
 }
-.NavBar{
-    display: flex;
-    justify-content: space-around;
-    max-width: 100%;
-}
 .Link {
     color:  rgba(0, 255, 59, 0.78);
     text-decoration: none;  /* removes the underline*/
     font-family: 'Press Start 2P', monospace;
 }
+.title {
+	text-align: left;
+}
 
+.item {
+	text-decoration: none;
+
+}
 .PageTitle {
 	text-align: center;
 
@@ -36,6 +38,11 @@ body{
 }
 .Footer {
 	text-align: center;
+}
+.box {
+	border-radius: 10px;
+	width: 100%;
+	max-width: 320px;
 }
 .FooterSection {
 	background-color: black;
