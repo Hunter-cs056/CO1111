@@ -21,15 +21,6 @@ body{
     font-family: 'Press Start 2P', monospace;
 }
 
-.NavList {
-	/* justify-content: flex-end;*/
-	display: flex;
-	margin-left: auto;
-}
-.item {
-	text-decoration: none;
-
-}
 .PageTitle {
 	text-align: center;
 
