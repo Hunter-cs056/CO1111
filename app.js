@@ -97,7 +97,7 @@ async function startGame(){
 }
 
 /* ===========================
-   START GAME
+   LOAD QUESTION
    ========================== */
 //Function to Load Questions
 async function loadQuestion() {
