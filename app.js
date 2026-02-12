@@ -1,7 +1,7 @@
 /* ===========================
     GLOBAL VARIABLES
    ========================== */
-let sessionId = null;
+        let sessionId = null;
 let selectedTreasureHunt = null;
 
 //Standard API URL part
@@ -193,6 +193,15 @@ async function loadQuestion() {
         console.error("Network Error: " + error);
     }
 }
+
+/* ===========================
+   LOCATION FUNCTION
+   ========================== */
+function sendLocation(){
+
+}
+
+
 
 
 /* ===========================
