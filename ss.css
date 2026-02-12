@@ -23,7 +23,11 @@ body{
 .title {
 	text-align: left;
 }
-
+.NavList {
+	justify-content: flex-end;
+	display: flex;
+	margin-left: auto;
+}
 .item {
 	text-decoration: none;
 
