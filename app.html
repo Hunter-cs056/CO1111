@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppPage</title>
+    <link rel="stylesheet" href="#">
+</head>
+<body>
 
+    <!--This Section is for the Navigation Bar/ Header-->
+    <header>
+        <div id="Logo"></div>
+        <div id="TitleText"></div>
+        <button id="StartBtn"></button>
+    </header>
+
+    <!--This Section is for the Main content of the page-->
+    <main>
+<!--Selection Area with  Treasure Hunts to select from and Reset or Submit buttons as well-->
+        <section id="SelectionArea">
+            <h3>Select TreasureHunt</h3>
+            <div id="TrHuntList"></div>
+            <button id="submitTrHunt">Start</button>
+        </section>
+
+
+<!--GameArea with TreasureHunt-Question and Options to Answer with a Submit/Skip button-->
+        <section id="GameArea" style="display: none">
+            <h3 id="QuestionText"></h3>
+            <div id="AnswerArea"></div>
+
+            <button id ="SubmitAnswerBtn">Submit Answer</button>
+            <button id ="SkipAnswerBtn">Skip Answer</button>
+            <button id ="SendLocationBtn" style="display: none">Share Location</button>
+
+            <div id="scoreDisplay">Score: 0</div>
+            <div id="feedback"></div>
+        </section>
+
+<!--LeaderBoard Area-->
+        <section id="LeaderBoard" style="display: none">
+            <h3>LeaderBoard</h3>
+            <ul id="LeaderBoardList"></ul>
+        </section>
+
+    </main>
+
+
+    <!--This Section is for the Footer of the page-->
+    <footer>
+        <div class="Links">
+            <p><a id="InstagramLogo" href="#">InstagramLogo</a></p>
+        </div>
+        <div class="Links">
+            <p><a id="Xlogo" href="#">Xlogo</a></p>
+        </div>
+    </footer>
+<script src="app.js"></script>
+</body>
+</html>
