@@ -36,8 +36,11 @@ body{
 	text-align: center;
 	
 }
-.Footer {
-	text-align: center;
+.footer {
+    text-align: center;
+    padding: 40px 0 30px;
+    margin-top: 40px;
+    background-color: black;
 }
 .box {
 	border-radius: 10px;
