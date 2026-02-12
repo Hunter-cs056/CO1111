@@ -25,10 +25,13 @@ main, footer {
 .Card {
     display: inline-block;
     border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 10px;
+    border-radius: 16px;
     padding: 10px 20px;
     text-align: center;
     list-style: none; /* removes the bullets*/
+	color: #d0f0c0;
+	box-shadow: 0 0 0 2px #0f1f0f, 0 0 0 5px #071107, 0 0 15px #206620;
+	 background: #0b130b;
 }
 .Link {
     color:  rgba(0, 255, 59, 0.78);
@@ -49,6 +52,12 @@ main, footer {
 }
 .PageTitle {
 	text-align: center;
+	font-size: 26px;
+	color: #ccffcc;
+	text-shadow: 0 0 10px #00e676;
+	background: #0f1a0f;
+	padding: 16px 28px;
+	border: 2px dashed #2eff6e;
 
 }
 .MainText {
@@ -66,4 +75,11 @@ footer {
     bottom: 0;
     width: 100%;
 }
-
+h1 {
+	font-size: 18px;
+	margin-top: 60px;
+ 	margin-bottom: 30px;
+	color: #b5ffb5;
+	text-shadow: 0 0 3px #00aa33;
+	padding-bottom: 12px;
+}
