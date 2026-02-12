@@ -18,6 +18,7 @@ body{
 .NavBar{
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 .Link {
     color:  rgba(0, 255, 59, 0.78);
