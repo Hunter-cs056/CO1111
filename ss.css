@@ -15,6 +15,10 @@ body{
     text-align: center;
     list-style: none; /* removes the bullets*/
 }
+.NavBar{
+    display: flex;
+    justify-content: space-around;
+}
 .Link {
     color:  rgba(0, 255, 59, 0.78);
     text-decoration: none;  /* removes the underline*/
