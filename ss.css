@@ -37,6 +37,10 @@ main, footer {
 }
 .title {
 	text-align: left;
+	margin: 0;
+	border-left: 6px solid #3eff6e;
+	color: #9effb0;
+	text-shadow: 0 0 5px #1f9f4f, 0 0 12px #0f4f1f;
 }
 
 .item {
