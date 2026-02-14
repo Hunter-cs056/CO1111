@@ -23,7 +23,7 @@ main, footer {
 }
 
 .Card {
-    display: block; 
+    display: block;
     border: 1px solid rgba(0, 255, 59, 0.78);
     border-radius: 16px;
     padding: 10px 20px;
@@ -32,10 +32,20 @@ main, footer {
     color: #d0f0c0;
     box-shadow: 0 0 0 2px #0f1f0f, 0 0 0 5px #071107, 0 0 15px #206620;
     background: #0b130b;
-    margin: 20px auto; 
-    width: 80%;  
-    max-width: 400px; 
+    margin: 20px auto;
+    width: 80%;
+    max-width: 400px;
+    transition: all 0.3s ease; 
 }
+
+
+.Card:hover {
+    transform: scale(1.05);  
+    border-color: #00ff88;  
+    box-shadow: 0 0 0 2px #1f3f1f, 0 0 0 5px #0f1f0f, 0 0 25px #30ff30;
+    cursor: pointer; 
+}
+
 .Link {
     color:  rgba(0, 255, 59, 0.78);
     text-decoration: none;
@@ -57,7 +67,7 @@ main, footer {
     text-shadow: 0 0 10px #00e676;
     background: #0f1a0f;
     padding: 16px 28px;
-    border: 2px #2eff6e;
+    border: 2px dashed #2eff6e;
 }
 .MainText {
     text-align: center;
@@ -89,8 +99,11 @@ h1 {
 }
 
 .Media .Card {
-    display: inline-block; 
+    display: inline-block;
     width: auto;
     margin: 5px;
     padding: 5px 10px;
+}
+.Media .Card:hover {
+    transform: scale(1.1);
 }
