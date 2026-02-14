@@ -67,7 +67,7 @@ main, footer {
     text-shadow: 0 0 10px #00e676;
     background: #0f1a0f;
     padding: 16px 28px;
-    border: 2px dashed #2eff6e;
+    border: 2px #2eff6e;
 }
 .MainText {
     text-align: center;
