@@ -15,6 +15,9 @@ main, footer {
     margin-right: auto;
     background-color: black;
 }
+header {
+    background-color: black;
+}
 #Header {
     border-bottom: 3px solid #2aff6e;
     margin-bottom: 20px;
