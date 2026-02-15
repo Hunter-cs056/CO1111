@@ -122,12 +122,14 @@ h1 {
     padding: 8px 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
-     color: #b5ffb5;
+    color: #b5ffb5;
+    justify-content: right;
     
    
 }
 .headernav {
-     text-align: right;
+    justify-content: right;
+    text-align: right;
     display: flex;
     gap: 15px;
     margin-left: auto;
