@@ -13,6 +13,7 @@ main, footer {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    background-color: black;
 }
 #Header {
     border-bottom: 3px solid #2aff6e;
