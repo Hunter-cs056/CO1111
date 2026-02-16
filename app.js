@@ -234,7 +234,31 @@ async function submitAnswer(answerValue){
         console.error("Network Error: " + error);
     }
 }
+/* ===========================
+   SKIP  QUESTION
+   ========================== */
+async function skipQuestion(){
+    try {
+        const response = await fetch(`${API_LINK}/skip?session=${sessionId}`);
+        const data = await response.json();
+        if (data.status !== "OK") {
+            console.error("Skip Error:", data.errorMessages);
+            return;
+        }
+        //Display feedback message
+        document.getElementById("feedback").innerText=data.message;
+        //Call the updateScore function after skipping
+        updateScore();
+        //Load next question after 5 seconds
+        setTimeout(() =>{
+            loadQuestion();
+        },3000);
 
+    }
+    catch(error){
+        console.error("Network Error: " + error);
+    }
+}
 
 
 
@@ -244,7 +268,7 @@ async function submitAnswer(answerValue){
 
 
 /* ===========================
-   LOCATION FUNCTION
+   SHARE LOCATION
    ========================== */
 function sendLocation(){
 
