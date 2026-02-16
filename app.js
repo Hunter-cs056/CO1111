@@ -260,17 +260,18 @@ async function skipQuestion(){
     }
 }
 
-
-
-
-
-
-
-
 /* ===========================
    SHARE LOCATION
    ========================== */
 function sendLocation(){
+
+}
+
+
+/* ===========================
+   UPDATE SCORE
+   ========================== */
+async function updateScore(){
 
 }
 
