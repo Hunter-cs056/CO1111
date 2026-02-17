@@ -271,8 +271,10 @@ async function skipQuestion(){
    SHARE LOCATION
    ========================== */
 function sendLocation(){
-
-}
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your browser.");
+        return;
+    }
 
 
 
