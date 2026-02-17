@@ -261,7 +261,24 @@ async function skipQuestion(){
 }
 
 
+/* ===========================
+    UPDATE SCORE
+   =========================== */
+async function updateScore(){
+    try {
+        const response = await fetch (`${API_LINK}/score?session=${sessionId}`);
+        const data = await response.json();
 
+        if (data.status !== "OK") {
+            console.error("Score Error:", data.errorMessages);
+            return;
+        }
+        document.getElementById("scoreDisplay").innerText = `Score: ${data.score}`;
+    } catch (error){
+        console.error("Network Error: " + error);
+    }      
+}
+    
 
 
 
