@@ -273,6 +273,7 @@ async function updateScore(){
             console.error("Score Error:", data.errorMessages);
             return;
         }
+        //Update Score being displayed.
         document.getElementById("scoreDisplay").innerText = `Score: ${data.score}`;
     } catch (error){
         console.error("Network Error: " + error);
@@ -287,11 +288,41 @@ async function updateScore(){
 /* ===========================
    SHARE LOCATION
    ========================== */
-function sendLocation(){
+async function sendLocation(){
     if (!navigator.geolocation) {
         alert("Geolocation is not supported by your browser.");
         return;
     }
+
+    navigator.geolocation.getCurrentPosition(async position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        try {
+            const response = await fetch(`${API_LINK}/location?session=${sessionId}&latitude=${lat}&longitude=${lon}`);
+            const data = await response.json();
+
+            if (data.status !== "OK") {
+                console.error("Location Error: ", data.errorMessages);
+                return;
+            }
+
+            // Show feedback from the API
+            document.getElementById("feedback").innerText = data.message;
+
+            // Update score after sending location
+            updateScore();
+
+            // Load next question after a short delay
+            setTimeout(() => {
+                loadQuestion();
+            }, 3000);
+        } catch (error) {
+            console.error("Network Error:", error);
+        }
+    }, () => {
+        alert("Unable to retrive your location.");
+    });
 
 
 
