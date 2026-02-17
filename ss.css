@@ -3,47 +3,140 @@ body{
     font-family: 'Press Start 2P', monospace;
     margin: 0;
     padding: 0;
-    background-color: #000000;
+    color: #9ef0c0;
     color: rgba(0, 255, 59, 0.78);
+    flex-direction: column;
+    background-color: #0c0c0c;
 }
-/*border for the Navigation List*/
+main, footer {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+}
+header {
+    background-color: black;
+}
+#Header {
+    border-bottom: 3px solid #2aff6e;
+    margin-bottom: 20px;
+    padding: 25px 20px 15px;
+    text-align: left;
+    background-color: black;
+    display: flex;
+}
+
 .Card {
-    display: inline-block;
+    display: block;
     border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 10px;
+    border-radius: 16px;
     padding: 10px 20px;
     text-align: center;
-    list-style: none; /* removes the bullets*/
+    list-style: none;
+    color: #d0f0c0;
+    box-shadow: 0 0 0 2px #0f1f0f, 0 0 0 5px #071107, 0 0 15px #206620;
+    background: #0b130b;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 400px;
+    transition: all 0.3s ease; 
 }
+
+
+.Card:hover {
+    transform: scale(1.05);  
+    border-color: #00ff88;  
+    box-shadow: 0 0 0 2px #1f3f1f, 0 0 0 5px #0f1f0f, 0 0 25px #30ff30;
+    cursor: pointer; 
+}
+
 .Link {
     color:  rgba(0, 255, 59, 0.78);
-    text-decoration: none;  /* removes the underline*/
+    text-decoration: none;
     font-family: 'Press Start 2P', monospace;
 }
 .title {
-	text-align: left;
+    text-align: left;
+    margin: 0;
+    color: #9effb0;
+    text-shadow: 0 0 5px #1f9f4f, 0 0 12px #0f4f1f;
 }
-
 .item {
-	text-decoration: none;
-
+    text-decoration: none;
 }
 .PageTitle {
-	text-align: center;
-
+    text-align: center;
+    font-size: 26px;
+    color: #ccffcc;
+    text-shadow: 0 0 10px #00e676;
+    background: #0f1a0f;
+    padding: 16px 28px;
+    border: 2px #2eff6e;
 }
 .MainText {
-	text-align: center;
-	
-}
-.Footer {
-	text-align: center;
+    text-align: center;
 }
 .box {
-	border-radius: 10px;
-	width: 100%;
-	max-width: 320px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 320px;
 }
-.FooterSection {
-	background-color: black;
+footer {
+    text-align: center;
+  
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 0;
+    border-top: 2px solid #2aff6e; 
+    margin-top: 40px; 
+    background-color: black; 
+    color: #9ef0c0;
+    font-size: 12px;  
 }
+h1 {
+    font-size: 18px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    color: #b5ffb5;
+    text-shadow: 0 0 3px #00aa33;
+    padding-bottom: 12px;
+}
+.Media {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.Media .Card {
+    display: inline-block;
+    width: auto;
+    margin: 5px;
+    padding: 5px 10px;
+}
+.Media .Card:hover {
+    transform: scale(1.1);
+}
+.nav {
+    text-decoration: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: #b5ffb5;
+    justify-content: right;
+    
+   
+}
+.headernav {
+    justify-content: right;
+    text-align: right;
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+}
+

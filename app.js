@@ -130,6 +130,9 @@ async function loadQuestion() {
         //Clear the previous Answer Area
         const answerArea = document.getElementById("AnswerArea");
         answerArea.innerHTML="";
+        //Clear the previous Feedback area
+        const feedbackArea = document.getElementById("feedback");
+        feedbackArea.innerHTML="";
 
         //A switch handles each question type using data.questionType
         //Cases will be the possible answer types: BOOLEAN/INTEGER/NUMERIC/MCQ/TEXT
@@ -188,14 +191,84 @@ async function loadQuestion() {
         }else {
             locationBtn.style.display="none";
         }
-
+        //Submit Answer button functionality that calls  submitAnswer() using the id of the question as the parameter
+        const submitBtn = document.getElementById("SubmitAnswerBtn");
+        submitBtn.onclick = () =>{
+            const input = document.getElementById("answerInput");
+            if (input){
+                //We use trim to remove any white spaces around the answer
+                const value = input.value.trim();
+                if (value === ""){
+                    alert("Please enter an answer before Submitting!");
+                    return;
+                }
+                submitAnswer(value);
+            }
+        };
     }catch(error) {
         console.error("Network Error: " + error);
     }
 }
+/* ===========================
+   SUBMIT  ANSWER
+   ========================== */
+async function submitAnswer(answerValue){
+    try{
+        //Here we will use encodeURIComponent for the answerValue to protect the integrity of the data and ensure the functionality of the API call
+        const response = await fetch(`${API_LINK}/answer?session=${sessionId}&answer=${encodeURIComponent(answerValue)}`);
+        const data = await response.json();
+        if (data.status !== "OK") {
+            console.error("Answer error:", data.errorMessages);
+            return;
+        }
+        //Show feedback
+        document.getElementById("feedback").innerText=data.message;
+        //Call the updateScore function
+        updateScore();
+        //Load next Question after 5 seconds
+        setTimeout(() =>{
+            loadQuestion();
+        },5000);
+    }
+    catch(error){
+        console.error("Network Error: " + error);
+    }
+}
+/* ===========================
+   SKIP  QUESTION
+   ========================== */
+async function skipQuestion(){
+    try {
+        const response = await fetch(`${API_LINK}/skip?session=${sessionId}`);
+        const data = await response.json();
+        if (data.status !== "OK") {
+            console.error("Skip Error:", data.errorMessages);
+            return;
+        }
+        //Display feedback message
+        document.getElementById("feedback").innerText=data.message;
+        //Call the updateScore function after skipping
+        updateScore();
+        //Load next question after 5 seconds
+        setTimeout(() =>{
+            loadQuestion();
+        },3000);
+
+    }
+    catch(error){
+        console.error("Network Error: " + error);
+    }
+}
+
+
+
+
+
+
+
 
 /* ===========================
-   LOCATION FUNCTION
+   SHARE LOCATION
    ========================== */
 function sendLocation(){
 
