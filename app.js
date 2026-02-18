@@ -1,7 +1,7 @@
 /* ===========================
     GLOBAL VARIABLES
    ========================== */
-        let sessionId = null;
+let sessionId = null;
 let selectedTreasureHunt = null;
 
 //Standard API URL part
@@ -48,7 +48,7 @@ function renderTreasureHunts(list) {
         //Access the label for the TreasureHunt and display the option it represents using
         //hunt.id
         option.innerHTML=`
-        <input type="radio" name="TreasureHunt" value="${hunt.id}">
+        <input type="radio" name="TreasureHunt" value="${hunt.uuid}">
         ${hunt.name}
         `;
         //Put the option inside the list
@@ -67,7 +67,7 @@ async function startGame(){
         alert("Please select a TreasureHunt first!");
         return;
     }
-    //Variable to store the (hunt.id) of the selected TreasureHunt
+    //Variable to store the (hunt.uuid) of the selected TreasureHunt
     selectedTreasureHunt = selected.value;
 
     //For now a random Player name just for testing(Later we will call the API and check if the error Msg for used Name)
@@ -125,7 +125,7 @@ async function loadQuestion() {
         //If no ERROR appears and the TrHunt is not completed already,the function will continue as expected
 
         //Display the question Text
-        document.getElementById("QuestionText").innerText=data.questionText;
+        document.getElementById("QuestionText").innerHTML=data.questionText;
 
         //Clear the previous Answer Area
         const answerArea = document.getElementById("AnswerArea");
@@ -261,22 +261,63 @@ async function skipQuestion(){
 }
 
 /* ===========================
-   SHARE LOCATION
-   ========================== */
-function sendLocation(){
+    UPDATE SCORE
+   =========================== */
+async function updateScore(){
+    try {
+        const response = await fetch (`${API_LINK}/score?session=${sessionId}`);
+        const data = await response.json();
 
+        if (data.status !== "OK") {
+            console.error("Score Error:", data.errorMessages);
+            return;
+        }
+        //Update Score being displayed.
+        document.getElementById("scoreDisplay").innerText = `Score: ${data.score}`;
+    } catch (error){
+        console.error("Network Error: " + error);
+    }      
 }
-
 
 /* ===========================
-   UPDATE SCORE
+   SHARE LOCATION
    ========================== */
-async function updateScore(){
+async function sendLocation() {
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your browser.");
+        return;
+    }
 
+    navigator.geolocation.getCurrentPosition(async position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        try {
+            const response = await fetch(`${API_LINK}/location?session=${sessionId}&latitude=${lat}&longitude=${lon}`);
+            const data = await response.json();
+
+            if (data.status !== "OK") {
+                console.error("Location Error: ", data.errorMessages);
+                return;
+            }
+
+            // Show feedback from the API
+            document.getElementById("feedback").innerText = data.message;
+
+            // Update score after sending location
+            updateScore();
+
+            // Load next question after  3 seconds
+            setTimeout(() => {
+                loadQuestion();
+            }, 3000);
+        } catch (error) {
+            console.error("Network Error:", error);
+        }
+    }, () => {
+        alert("Unable to retrive your location.");
+    });
 }
-
-
-
 
 /* ===========================
    EVENT LISTENER
