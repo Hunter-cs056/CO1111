@@ -69,11 +69,7 @@ async function startGame(){
     }
     //Variable to store the (hunt.uuid) of the selected TreasureHunt
     selectedTreasureHunt = selected.value;
-    if (selectedTreasureHunt === undefined || selectedTreasureHunt === null) {
-        console.error("Error: Treasure hunt ID is missing or undefined. Cannot start treasure hunt.");
-        // Optionally, return or prevent the API call/function execution
-        return;
-    }
+
     //For now a random Player name just for testing(Later we will call the API and check if the error Msg for used Name)
     const playerName ="Player" + Math.floor(Math.random() * 1000);
     //Now we call the API while using the playerName and TreasureHuntId as parameters
