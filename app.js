@@ -1,7 +1,7 @@
 /* ===========================
     GLOBAL VARIABLES
    ========================== */
-        let sessionId = null;
+let sessionId = null;
 let selectedTreasureHunt = null;
 
 //Standard API URL part
@@ -260,7 +260,6 @@ async function skipQuestion(){
     }
 }
 
-
 /* ===========================
     UPDATE SCORE
    =========================== */
@@ -279,11 +278,6 @@ async function updateScore(){
         console.error("Network Error: " + error);
     }      
 }
-    
-
-
-
-
 
 /* ===========================
    SHARE LOCATION
@@ -313,7 +307,7 @@ async function sendLocation() {
             // Update score after sending location
             updateScore();
 
-            // Load next question after a short delay
+            // Load next question after  3 seconds
             setTimeout(() => {
                 loadQuestion();
             }, 3000);
@@ -324,9 +318,6 @@ async function sendLocation() {
         alert("Unable to retrive your location.");
     });
 }
-
-
-
 
 /* ===========================
    EVENT LISTENER
