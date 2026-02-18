@@ -48,7 +48,7 @@ function renderTreasureHunts(list) {
         //Access the label for the TreasureHunt and display the option it represents using
         //hunt.id
         option.innerHTML=`
-        <input type="radio" name="TreasureHunt" value="${hunt.id}">
+        <input type="radio" name="TreasureHunt" value="${hunt.uuid}">
         ${hunt.name}
         `;
         //Put the option inside the list
