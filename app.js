@@ -125,7 +125,7 @@ async function loadQuestion() {
         //If no ERROR appears and the TrHunt is not completed already,the function will continue as expected
 
         //Display the question Text
-        document.getElementById("QuestionText").innerText=data.questionText;
+        document.getElementById("QuestionText").innerHTML=data.questionText;
 
         //Clear the previous Answer Area
         const answerArea = document.getElementById("AnswerArea");
