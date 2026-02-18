@@ -288,7 +288,7 @@ async function updateScore(){
 /* ===========================
    SHARE LOCATION
    ========================== */
-async function sendLocation(){
+async function sendLocation() {
     if (!navigator.geolocation) {
         alert("Geolocation is not supported by your browser.");
         return;
@@ -323,6 +323,7 @@ async function sendLocation(){
     }, () => {
         alert("Unable to retrive your location.");
     });
+}
 
 
 
