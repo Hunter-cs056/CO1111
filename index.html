@@ -5,63 +5,37 @@
     <link rel="stylesheet" href="ss.css" type="text/css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script> 
-    const hamburgermenu = document.getElementById("hamburgermenu");
-    const navigationmenu = document.getElementById("navigationmenu");
 
-    hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("show");
-});
-
-</script>
 </head>
+
 
 <!--navigation bar, link section (I used blank as a placeholder for our link names since we didn't decide on what links we're going to use.)-->
 <body>
     <header id="Header">
 
-        <h3 class="title">Emerald Hunters</h3>
-        <div class ="hamburgermenu" id="hamburgermenu"> 
-            <span></span>
-             <span></span>
-             <span></span>
-        </div>
-       <nav class="headernav" id="naviagtionmenu">
-            <a href="index.html" class="nav">About Us</a>
-            <a href="app.html" class="nav">Start Now</a>
-        </nav>
-    </header>
+    <a href="index.html" class="title"><h3 class="title">Emerald Hunters</h3></a>
+
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="headernav" id="navMenu">
+        <a href="#about" class="nav">About Us</a>
+        <a href="app.html" class="nav">Start Now</a>
+    </nav>
+
+</header>
+
 
 <!--Main Content-->
 <main>
     <h1 class="PageTitle">Welcome to the treasure hunt</h1>
 
-    <h1>ABOUT US</h1>
-    <div class="AboutUs Card">
+    
 
-        <p>
-            Welcome to Emerald Hunters,<br>
-            the most thrilling treasure hunt<br>
-            adventure! We've created an<br>
-            immersive experience where<br>
-            players explore mysterious<br>
-            locations, solve challenging<br>
-            puzzles, and hunt for hidden<br>
-            emeralds across the globe.<br>
-            <br>
-            Our mission is to bring<br>
-            adventure seekers together<br>
-            through the excitement of<br>
-            discovery. Each hunt is<br>
-            carefully crafted with cryptic<br>
-            clues, hidden gems, and<br>
-            exciting rewards that will test<br>
-            your wit and determination.<br>
-
-        </p>
-    </div>
-
-    <h1>How to play</h1>
+    <h1>HOW TO PLAY</h1>
 
     <div class="Textbox1 Card">
 
@@ -127,14 +101,37 @@
             achievements!<br>
         </p>
     </div>
+    
+    <div class="AboutUs Card">
 
-    <h1>JOIN OUR COMMUNITY</h1>
+        <p>
+            <h1 id="about">ABOUT US</h1><br><br>
+            Welcome to Emerald Hunters,<br>
+            the most thrilling treasure hunt<br>
+            adventure! We've created an<br>
+            immersive experience where<br>
+            players explore mysterious<br>
+            locations, solve challenging<br>
+            puzzles, and hunt for hidden<br>
+            emeralds across the globe.<br>
+            <br>
+            Our mission is to bring<br>
+            adventure seekers together<br>
+            through the excitement of<br>
+            discovery. Each hunt is<br>
+            carefully crafted with cryptic<br>
+            clues, hidden gems, and<br>
+            exciting rewards that will test<br>
+            your wit and determination.<br>
+
+        </p>
+    </div>
+
+   
     <div class="Follow Card">
         <p>
-            Follow us on social media to<br>
-            stay updated with the latest<br>
-            news, updates, and exclusive<br>
-            content!<br>
+             <h1>FOLLOW US</h1>
+        
         </p>
 
         <div class="Media">
@@ -177,5 +174,13 @@
 </footer>
 
     <script src="app.js"></script>
+    <script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+
+    hamburger.addEventListener("click", function () {
+        navMenu.classList.toggle("show");
+    });
+</script>
 </body>
 </html>
