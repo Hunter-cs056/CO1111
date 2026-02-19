@@ -249,10 +249,10 @@ async function skipQuestion(){
         document.getElementById("feedback").innerText=data.message;
         //Call the updateScore function after skipping
         updateScore();
-        //Load next question after 5 seconds
+        //Load next question after 1 seconds
         setTimeout(() =>{
             loadQuestion();
-        },3000);
+        },1000);
 
     }
     catch(error){
@@ -307,10 +307,10 @@ async function sendLocation() {
             // Update score after sending location
             updateScore();
 
-            // Load next question after  3 seconds
+            // Load next question after  1 seconds
             setTimeout(() => {
                 loadQuestion();
-            }, 3000);
+            }, 1000);
         } catch (error) {
             console.error("Network Error:", error);
         }
