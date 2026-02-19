@@ -26,7 +26,7 @@ For now we create the layout and later we customize it
 
 ##OUR SECOND MEETING:
 12/02/2026 Thursday 13:00pm
-Participants: Maximos, Rania, Rudolf, George,Alexandra is missing
+Participants: Maximos, R[Meetings.md](Meetings.md)ania, Rudolf, George,Alexandra is missing
 Location: Library
 Topic: App functionality and Design
 Discussions:
