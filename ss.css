@@ -169,6 +169,7 @@ headernav {
         display: flex; 
         flex-direction: column; 
         gap: 5px; 
+        margin-left: auto;
         }
     .hamburger span { 
         width: 40px; 
