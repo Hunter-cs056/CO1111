@@ -8,6 +8,7 @@ body{
     flex-direction: column;
     background-color: black;
     display: flex;
+    text-decoration: none;
 }
 main, footer {
     width: 100%;
