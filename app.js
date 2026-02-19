@@ -101,9 +101,6 @@ async function startGame(){
    ========================== */
 //Function to Load Questions
 async function loadQuestion() {
-    //Handle the re-appearance of the skip and submit button
-    document.getElementById("SubmitAnswerBtn").style.display="block";
-    document.getElementById("SkipAnswerBtn").style.display="block";
     try{
         //Call the API/question with ${sessionId} as parameter(sessionId was a result of the /start API)
         const response = await fetch(`${API_LINK}/question?session=${sessionId}`);
@@ -211,13 +208,15 @@ async function loadQuestion() {
     }catch(error) {
         console.error("Network Error: " + error);
     }
+    //Re-enable the disabled buttons after the UI is finished loading
+    disableButtons(false);
 }
 /* ===========================
    SUBMIT  ANSWER
    ========================== */
 async function submitAnswer(answerValue){
-    //After an answer is submitted, make submit Btn disappear
-    document.getElementById("SubmitAnswerBtn").style.display="none";
+    //Disable Buttons to prevent user's spamming
+    disableButtons(true);
     try{
         //Here we will use encodeURIComponent for the answerValue to protect the integrity of the data and ensure the functionality of the API call
         const response = await fetch(`${API_LINK}/answer?session=${sessionId}&answer=${encodeURIComponent(answerValue)}`);
@@ -230,10 +229,10 @@ async function submitAnswer(answerValue){
         document.getElementById("feedback").innerText=data.message;
         //Call the updateScore function
         updateScore();
-        // Load next question after 1 second
+        // Load next question after 2 seconds
         setTimeout(() => {
             loadQuestion();
-        }, 1000);
+        }, 2000);
     }
     catch(error){
         console.error("Network Error: " + error);
@@ -243,8 +242,8 @@ async function submitAnswer(answerValue){
    SKIP  QUESTION
    ========================== */
 async function skipQuestion(){
-    //After an answer is skipped, make the skip Btn disappear
-    document.getElementById("SkipAnswerBtn").style.display="none";
+    //Disable Buttons to prevent user's spamming
+    disableButtons(true);
     try {
         const response = await fetch(`${API_LINK}/skip?session=${sessionId}`);
         const data = await response.json();
@@ -256,10 +255,10 @@ async function skipQuestion(){
         document.getElementById("feedback").innerText=data.message;
         //Call the updateScore function after skipping
         updateScore();
-        //Load next question after 1 second
+        //Load next question after 2 seconds
         setTimeout(() =>{
             loadQuestion();
-        },1000);
+        },2000);
 
     }
     catch(error){
@@ -314,10 +313,10 @@ async function sendLocation() {
             // Update score after sending location
             updateScore();
 
-            // Load next question after  1 seconds
+            // Load next question after  2 seconds
             setTimeout(() => {
                 loadQuestion();
-            }, 1000);
+            }, 2000);
 
         } catch (error) {
             console.error("Network Error:", error);
@@ -326,6 +325,14 @@ async function sendLocation() {
         alert("Unable to retrive your location.");
     });
 }
+/* ===========================
+   HELPER FUNCTIONS
+   ========================== */
+function disableButtons(value){
+    document.getElementById("SubmitAnswerBtn").disabled = value;
+    document.getElementById("SkipAnswerBtn").disabled = value;
+}
+
 
 /* ===========================
    EVENT LISTENER
