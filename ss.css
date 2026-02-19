@@ -6,7 +6,7 @@ body{
     color: #9ef0c0;
     color: rgba(0, 255, 59, 0.78);
     flex-direction: column;
-    background-color: #0c0c0c;
+    background-color: black;
 }
 main, footer {
     width: 100%;
