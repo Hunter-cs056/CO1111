@@ -307,6 +307,10 @@ async function sendLocation() {
             // Update score after sending location
             updateScore();
 
+            // Load next question after  1 seconds
+            setTimeout(() => {
+                loadQuestion();
+            }, 1000);
 
         } catch (error) {
             console.error("Network Error:", error);
