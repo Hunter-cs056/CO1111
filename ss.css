@@ -62,6 +62,7 @@ header {
     margin: 0;
     color: #9effb0;
     text-shadow: 0 0 5px #1f9f4f, 0 0 12px #0f4f1f;
+    text-decoration: none;
 }
 .item {
     text-decoration: none;
