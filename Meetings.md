@@ -41,3 +41,39 @@ would just appear when the question requiring geolocation loads.In conclusion
 we kept share location as a button for user convenience(for example if the user
 accidentally presses deny, page refresh is not a good option, while repressing
 the button is more convenient)
+
+##OUR THIRD MEETING:
+19/02/2026 Thursday 13:15pm
+Participants: Maximos, Rania, Alex, Rudolf, George
+Location: Library
+Topic: App functionality and Design
+Discussions:
+1.Right now the app is using a random Player Name to call the API , Alex will have to create a Modal(pop-up text input)
+in order for the user to enter a username. The username has to be valid and that is going to be checked by calling the /start API 
+and checking just the errorMessages and status.ERROR.
+2.Now The core gameplay is complete, all its left is for Rudolf to use the /leaderBoard API and create the leaderBoard
+3.George will work to create a back to top button on the landing Page and add a back to homepage button on the app page and 
+do a small research on the loading animations
+4.Maximos will work to fix the score bug since the core gameplay is already done and try to improve the question loading 
+for example making the input/Choice option disappear when the user presses submit. I will also work on fixing other bugs
+involing the submit and skip button.Maximos will also work on applying cookies to our website
+5.Rania will work on the class worksheet 18 in order to work on making our app downloadable on mobile and pc devices
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
