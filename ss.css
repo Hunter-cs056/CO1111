@@ -162,8 +162,6 @@ headernav {
         padding: 15px;
         border-radius: 12px;
         border: 2px solid #2eff6e;
-        box-shadow: 0 0 15px #206620;
-        z-index: 999; /* below hamburger */
     }
 
     .headernav.show {
@@ -174,9 +172,7 @@ headernav {
         display: flex;
         flex-direction: column;
         gap: 6px;
-        cursor: pointer;
         margin-left: auto;
-        z-index: 9999; /* clickable */
     }
 
     .hamburger span {
