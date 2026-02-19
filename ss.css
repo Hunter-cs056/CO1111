@@ -157,6 +157,8 @@ headernav {
         right: 10px;
         padding: 15px;
         border-radius: 10px;
+        position: absolute;
+        background-color: red;
         
     }
     .headernav.show { 
@@ -173,6 +175,7 @@ headernav {
         height: 5px; 
         border-radius: 5px; 
         background: white;
+        transition: 0.3s;
     }
 }
 @media (min-width: 769px) { 
