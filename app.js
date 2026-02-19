@@ -101,6 +101,9 @@ async function startGame(){
    ========================== */
 //Function to Load Questions
 async function loadQuestion() {
+    //Handle the re-appearance of the skip and submit button
+    document.getElementById("SubmitAnswerBtn").style.display="block";
+    document.getElementById("SkipAnswerBtn").style.display="block";
     try{
         //Call the API/question with ${sessionId} as parameter(sessionId was a result of the /start API)
         const response = await fetch(`${API_LINK}/question?session=${sessionId}`);
@@ -213,6 +216,8 @@ async function loadQuestion() {
    SUBMIT  ANSWER
    ========================== */
 async function submitAnswer(answerValue){
+    //After an answer is submitted, make submit Btn disappear
+    document.getElementById("SubmitAnswerBtn").style.display="none";
     try{
         //Here we will use encodeURIComponent for the answerValue to protect the integrity of the data and ensure the functionality of the API call
         const response = await fetch(`${API_LINK}/answer?session=${sessionId}&answer=${encodeURIComponent(answerValue)}`);
@@ -238,6 +243,8 @@ async function submitAnswer(answerValue){
    SKIP  QUESTION
    ========================== */
 async function skipQuestion(){
+    //After an answer is skipped, make the skip Btn disappear
+    document.getElementById("SkipAnswerBtn").style.display="none";
     try {
         const response = await fetch(`${API_LINK}/skip?session=${sessionId}`);
         const data = await response.json();
