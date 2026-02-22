@@ -325,6 +325,46 @@ async function sendLocation() {
         alert("Unable to retrive your location.");
     });
 }
+
+/* ==========================
+   LEADERBOARD FUNCTION
+   ========================== */
+async function createLeaderboard () {
+    try {
+        let url;
+        if (sessionId) {
+            url = `${API_LINK}/leaderboard?session=${sessionId}&sorted&limit=10`;
+        }
+        else if (selectedTreasureHunt) {
+            url = `${API_LINK}/leaderboard?treasure-hunt-id=${selectedTreasureHunt}&sorted&limit=10`;
+        }
+        else {
+            console.error("Cannot load leaderboard");
+            return;
+        }
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status !== "OK") {
+            console.error("LeaderBoard Error:", data.errorMessages);
+            return;
+        }
+
+        renderLeaderboard(data.leaderboard, data.treasureHuntName);
+    }
+
+    catch (error) {
+        console.error("Network Error:", error);
+    }
+}
+                          
+        
+
+
+
+
+
 /* ===========================
    HELPER FUNCTIONS
    ========================== */
