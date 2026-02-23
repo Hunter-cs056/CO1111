@@ -331,10 +331,13 @@ async function sendLocation() {
    ========================== */
 async function createLeaderboard () {
     try {
+        //Choose which parameter to use
         let url;
+        //Use session ID if available
         if (sessionId) {
             url = `${API_LINK}/leaderboard?session=${sessionId}&sorted&limit=10`;
         }
+            //Use treasure hunt ID if no session
         else if (selectedTreasureHunt) {
             url = `${API_LINK}/leaderboard?treasure-hunt-id=${selectedTreasureHunt}&sorted&limit=10`;
         }
@@ -343,14 +346,16 @@ async function createLeaderboard () {
             return;
         }
 
+        //Make the API call
         const response = await fetch(url);
         const data = await response.json();
-
+        
+        //Check if response was successful
         if (data.status !== "OK") {
             console.error("LeaderBoard Error:", data.errorMessages);
             return;
         }
-
+        //Render leaderboard
         renderLeaderboard(data.leaderboard, data.treasureHuntName);
     }
 
@@ -358,12 +363,63 @@ async function createLeaderboard () {
         console.error("Network Error:", error);
     }
 }
-                          
+
+/* ==========================
+   DISPLAY THE LEADERBOARD
+   ========================== */
+function renderLeaderboard(leaderboard, treasureHuntName) {
+    //Gets the container where the leader board will be displayed
+    const container = document.getElementById("LeaderBoardList");
+    
+    //Clear any existing content
+    container.innerHTML = "";
+    
+    //Create and add the title element
+    const titleElement = document.createElement("li");
+    titleElement.className = "leaderboard-title";
+    titleElement.textContent = `Treasure Hunt: ${treasureHuntName}`;
+    container.appendChild(titleElement);
+
+    //Create and add the header element
+    const headerElement = document.createElement("li");
+    headerElement.className = "leaderboard-header";
+    headerElement.innerHTML = "<strong>Rank</strong> <strong>Player</strong> <strong>Score</strong> <strong>Completion Time</strong>";
+    container.appendChild(headerElement);
+
+    //Loop through each player in the leaderboard array
+    leaderboard.forEach ((player, index) => {
         
+        //Create a list item for each player
+        const listItem = document.createElement("li");
+        listItem.className = "leaderboard-item";
+        
+        //Formatting the completion time text
+        let completionTimeText;
+        if (player.completionTime === 0) {
+            completionTimeText = "In progress";
+        }
+        else { 
+            const date = new Date(player.completionTime);
+            completionTimeText = date.toLocaleString();
+        }
 
+        //Fill the list item
+        listItem.innerHTML = `<span>${index + 1}</span> <span>${player.name}</span> <span>${player.score}</span> <span>${completionTimeText}</span>`;
 
-
-
+        //Add the filled list item to the container
+        container.appendChild(listItem);
+    });
+        //Hide the other UI sections
+        document.getElementById("SelectionArea").style.display = "none";
+        document.getElementById("GameArea").style.display = "none";
+    
+        //Show the leaderboard
+        document.getElementById("LeaderBoard").style.display = "block";
+}
+    
+    
+        
+        
 
 /* ===========================
    HELPER FUNCTIONS
