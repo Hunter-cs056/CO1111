@@ -166,7 +166,7 @@ headernav {
     display: flex;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 
     .headernav {
         display: none;
@@ -201,7 +201,7 @@ headernav {
     }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 600px) {
     .hamburger {
         display: none;
     }
