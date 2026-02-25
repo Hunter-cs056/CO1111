@@ -1,0 +1,13 @@
+{
+  "name": "Simple app",
+  "short_name": "Simple app",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
