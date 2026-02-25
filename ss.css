@@ -27,6 +27,7 @@ header {
     text-align: left;
     background-color: black;
     display: flex;
+    align-items: center;
 }
 
 .Card {
@@ -77,6 +78,9 @@ header {
     background: #0f1a0f;
     padding: 16px 28px;
     border: 2px #2eff6e;
+    background: linear-gradient(#0f1a0f, #071107);
+    border-radius: 12px;
+    
 }
 .MainText {
     text-align: center;
@@ -88,12 +92,12 @@ header {
 }
 footer {
     text-align: center;
-  
+    border-top: 3px solid #2eff6e;
     width: 100%;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px 0;
+    padding: 20px;
     
     margin-top: 40px; 
     background-color: black; 
@@ -146,13 +150,18 @@ h1 {
     gap: 15px;
     margin-left: auto;
 }
-.numbers {
+
+ .numbers {
     border: 2px solid #2eff6e;
     padding: 10px;
-    border-radius: 16px;
-    max-width: 100%;
-    
+    border-radius: 12px;
+    width: 60px;
+    margin: auto;
+    font-size: 20px;
+    text-shadow: 0 0 8px #00ff88;
 }
+    
+
 headernav {
     display: flex;
 }
