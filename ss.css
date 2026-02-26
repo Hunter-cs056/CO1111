@@ -1,10 +1,10 @@
+
 body{
     text-align: center;
     font-family: 'Press Start 2P', monospace;
     margin: 0;
     padding: 0;
     color: #9ef0c0;
-    color: rgba(0, 255, 59, 0.78);
     flex-direction: column;
     background-color: black;
     display: flex;
@@ -72,7 +72,7 @@ header {
 }
 .PageTitle {
     text-align: center;
-    font-size: 26px;
+    font-size: 32px;
     color: #ccffcc;
     text-shadow: 0 0 10px #00e676;
     background: #0f1a0f;
@@ -108,7 +108,7 @@ footer {
     border-top: 2px solid #2aff6e; 
 }
 h1 {
-    font-size: 18px;
+    font-size: 24px;
     margin-top: 60px;
     margin-bottom: 30px;
     color: #b5ffb5;
@@ -118,8 +118,9 @@ h1 {
 .Media {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     flex-wrap: wrap;
+    padding: 10px;
 }
 
 .Media .Card {
@@ -127,6 +128,9 @@ h1 {
     width: auto;
     margin: 5px;
     padding: 5px 10px;
+    font-size: 12px;
+
+    
 }
 .Media .Card:hover {
     transform: scale(1.1);
@@ -154,10 +158,10 @@ h1 {
  .numbers {
     border: 2px solid #2eff6e;
     padding: 10px;
-    border-radius: 12px;
-    width: 60px;
+    border-radius: 50%;
+    width: 70px;
     margin: auto;
-    font-size: 20px;
+    font-size: 28px;
     text-shadow: 0 0 8px #00ff88;
 }
     
