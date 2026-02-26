@@ -439,7 +439,7 @@ document.getElementById("submitTrHunt").addEventListener("click", startGame);
    INITIAL LOAD(WHEN APP LAUNCHES)
    ========================== */
 getTreasureHunts();
-createLeaderboard();
+
 
 
 
