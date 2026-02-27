@@ -1,31 +1,55 @@
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
 
 body{
-    text-align: center;
-    font-family: 'Press Start 2P', monospace;
+    height: 100%;
     margin: 0;
     padding: 0;
-    color: #9ef0c0;
+    display: flex;
     flex-direction: column;
     background-color: black;
-    display: flex;
+    color: #9ef0c0;
+    font-family: 'Press Start 2P', monospace;
+    text-align: center;
     text-decoration: none;
 }
-main, footer {
+main {
+    flex: 1;
     width: 100%;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     background-color: black;
 }
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    border-top: 3px solid #2eff6e;
+    padding: 8px 0;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    color: #9ef0c0;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+/* remove default paragraph spacing */
+footer p {
+    margin: 2px 0;
+}
+
 header {
     background-color: black;
-}
-#Header {
     border-bottom: 3px solid #2aff6e;
     margin-bottom: 20px;
     padding: 25px 20px 15px;
     text-align: left;
-    background-color: black;
     display: flex;
     align-items: center;
 }
@@ -45,7 +69,6 @@ header {
     max-width: 400px;
     transition: all 0.3s ease; 
 }
-
 
 .Card:hover {
     transform: scale(1.05);  
@@ -70,18 +93,7 @@ header {
 .item {
     text-decoration: none;
 }
-.PageTitle {
-    text-align: center;
-    font-size: 32px;
-    color: #ccffcc;
-    text-shadow: 0 0 10px #00e676;
-    background: #0f1a0f;
-    padding: 16px 28px;
-    border: 2px #2eff6e;
-    background: linear-gradient(#0f1a0f, #071107);
-    border-radius: 12px;
-    
-}
+
 .MainText {
     text-align: center;
 }
@@ -90,23 +102,7 @@ header {
     width: 100%;
     max-width: 320px;
 }
-footer {
-    text-align: center;
-    border-top: 3px solid #2eff6e;
-    width: 100%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    
-    margin-top: 40px; 
-    background-color: black; 
-    color: #9ef0c0;
-    font-size: 12px;  
-}
-#footer {
-    border-top: 2px solid #2aff6e; 
-}
+
 h1 {
     font-size: 24px;
     margin-top: 60px;
@@ -115,26 +111,7 @@ h1 {
     text-shadow: 0 0 3px #00aa33;
     padding-bottom: 12px;
 }
-.Media {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    padding: 10px;
-}
 
-.Media .Card {
-    display: inline-block;
-    width: auto;
-    margin: 5px;
-    padding: 5px 10px;
-    font-size: 12px;
-
-    
-}
-.Media .Card:hover {
-    transform: scale(1.1);
-}
 .nav {
     text-decoration: none;
     font-family: 'Press Start 2P', monospace;
@@ -210,6 +187,25 @@ headernav {
         display: none;
     }
 }
-html {
-    scroll-behavior: smooth;
+
+.FollowUs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.iconBtn {
+    width: 45px;
+    transition: 0.3s;
+}
+
+.iconBtn:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 15px #00ff88);
 }
