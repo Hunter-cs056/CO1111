@@ -25,6 +25,7 @@ main {
 }
 
 footer {
+    position: relative;
     margin-top: auto;
     text-align: center;
     border-top: 3px solid #2eff6e;
@@ -55,10 +56,11 @@ header {
 }
 
 .Card {
+    position: relative;
     display: block;
     border: 1px solid rgba(0, 255, 59, 0.78);
     border-radius: 16px;
-    padding: 10px 20px;
+    padding: 18px 22px;
     text-align: center;
     list-style: none;
     color: #d0f0c0;
@@ -67,14 +69,20 @@ header {
     margin: 20px auto;
     width: 80%;
     max-width: 400px;
-    transition: all 0.3s ease; 
+    transition: all 0.3s ease;
 }
 
 .Card:hover {
     transform: scale(1.05);  
     border-color: #00ff88;  
-    box-shadow: 0 0 0 2px #1f3f1f, 0 0 0 5px #0f1f0f, 0 0 25px #30ff30;
+    box-shadow: 0 0 0 2px #1f3f1f,
+    0 0 0 5px #0f1f0f,
+    0 0 25px #30ff30;
     cursor: pointer; 
+}
+
+.Card h1{
+    margin: 10px 0 15px 0;
 }
 
 .Link {
@@ -88,7 +96,6 @@ header {
     color: #9effb0;
     text-shadow: 0 0 5px #1f9f4f, 0 0 12px #0f4f1f;
     text-decoration: none;
-    color: inherit;
 }
 .item {
     text-decoration: none;
@@ -104,7 +111,7 @@ header {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 60px;
     margin-bottom: 30px;
     color: #b5ffb5;
@@ -132,14 +139,19 @@ h1 {
     margin-left: auto;
 }
 
- .numbers {
+.numbers{
+    position: absolute;
+    top: 20px;
+    left: 20px;
     border: 2px solid #2eff6e;
-    padding: 10px;
     border-radius: 50%;
-    width: 70px;
-    margin: auto;
-    font-size: 28px;
-    text-shadow: 0 0 8px #00ff88;
+    width: 30px;
+    height: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    text-shadow:0 0 10px #00ff88;
 }
     
 
@@ -208,4 +220,16 @@ headernav {
 .iconBtn:hover {
     transform: scale(1.15);
     filter: drop-shadow(0 0 15px #00ff88);
+}
+
+.startBtn{
+    display:block;
+    width:100px;
+    margin: auto;
+    transition:0.3s;
+}
+
+.startBtn:hover{
+    transform:scale(1.15);
+    filter:drop-shadow(0 0 15px #00ff88);
 }
