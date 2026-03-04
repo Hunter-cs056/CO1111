@@ -71,11 +71,22 @@ async function startGame(){
     selectedTreasureHunt = selected.value;
 
     //For now a random Player name just for testing(Later we will call the API and check if the error Msg for used Name)
-    const playerName ="Player" + Math.floor(Math.random() * 1000);
+    let playerName=prompt("Enter your player name:");
+
+    if(playerName===null){
+        return;
+    }
+
+    playerName=playerName.trim();
+
+    if(playerName===""){
+        alert("Please enter a valid name!");
+        return;
+    }
     //Now we call the API while using the playerName and TreasureHuntId as parameters
     try{
         //Call the API/start with ${playerName} and ${selectedTreasureHunt} as parameters on the URL
-        const response = await fetch(`${API_LINK}/start?player=${playerName}&app=webapp&treasure-hunt-id=${selectedTreasureHunt}`);
+        const response = await fetch(`${API_LINK}/start?player=${encodeURIComponent(playerName)}&app=webapp&treasure-hunt-id=${encodeURIComponent(selectedTreasureHunt)}`);
         const data = await response.json();
         //If the response was "ok"
         if (data.status === "OK") {
@@ -89,7 +100,12 @@ async function startGame(){
             loadQuestion();
         }
         else {
-            console.error("Start Error: " , data.errorMessages);
+            const msg=(data.errorMessages && data.errorMessages.length)
+            ? data.errorMessages.join("\n")
+                : "Invalid player name! Try again!";
+
+            alert(msg);
+            return;
         }
     }catch(error) {
         console.error("Network Error: " + error);
