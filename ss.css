@@ -135,6 +135,11 @@ h1 {
     gap: 15px;
     margin-left: auto;
 }
+.imglogo {
+    height: 40px;
+    width: auto;
+    
+}
 
 .numbers{
     position: absolute;
