@@ -3,6 +3,7 @@
    ========================== */
 let sessionId = null;
 let selectedTreasureHunt = null;
+let playerName = null;
 
 //Standard API URL part
 const API_LINK= "https://codecyprus.org/th/api";
@@ -26,7 +27,7 @@ async function getTreasureHunts() {
             console.error("API Error: " + data.errorMessages);
         }
     }
-    //Handle network errors or manual throw errors
+        //Handle network errors or manual throw errors
     catch(error) {
         console.error("Network Error: " + error);
     }
@@ -59,7 +60,7 @@ function renderTreasureHunts(list) {
    START GAME
    ========================== */
 //Function to start the Game
-async function startGame(){
+function startGame(){
     //Checks if the player has selected a TrHunt
     const selected = document.querySelector("input[name='TreasureHunt']:checked");
     //If not display an alert
@@ -69,46 +70,56 @@ async function startGame(){
     }
     //Variable to store the (hunt.uuid) of the selected TreasureHunt
     selectedTreasureHunt = selected.value;
+    //open modal
+    document.getElementById("Modalname").style.display="flex";
+    document.getElementById("player-name").focus();
+}
 
-    //For now a random Player name just for testing(Later we will call the API and check if the error Msg for used Name)
-    let playerName=prompt("Enter your player name:");
+//close modal
+function closeModal(){
+    document.getElementById("Modalname").style.display="none";
+    document.getElementById("player-name").value="";
+}
+//what happens when player clicks start in modal
+async function startModal() {
+    const input = document.getElementById("player-name");
+    const name = input.value.trim();
 
-    if(playerName===null){
+    console.log("Typed name: ", name);
+
+    if (name === "") {
+        alert("Please enter a valid name.");
         return;
     }
+    playerName = name;
+    closeModal();
 
-    playerName=playerName.trim();
-
-    if(playerName===""){
-        alert("Please enter a valid name!");
-        return;
-    }
-    //Now we call the API while using the playerName and TreasureHuntId as parameters
-    try{
-        //Call the API/start with ${playerName} and ${selectedTreasureHunt} as parameters on the URL
-        const response = await fetch(`${API_LINK}/start?player=${encodeURIComponent(playerName)}&app=webapp&treasure-hunt-id=${encodeURIComponent(selectedTreasureHunt)}`);
+    try {
+        console.log("Sending to API:", name);
+        const response = await fetch(
+            `${API_LINK}/start?player=${encodeURIComponent(playerName)}&app=webapp&treasure-hunt-id=${encodeURIComponent(selectedTreasureHunt)}`);
         const data = await response.json();
-        //If the response was "ok"
-        if (data.status === "OK") {
-            //Assign to our variable the session id
-            sessionId=data.session;
-            //Make the SelectionArea section  not visible
-            document.getElementById("SelectionArea").style.display="none";
-            //Then make the GameArea section visible(It was  invisible at start)
-            document.getElementById("GameArea").style.display="block";
-            //Call the function that loads the Questions
-            loadQuestion();
-        }
-        else {
-            const msg=(data.errorMessages && data.errorMessages.length)
-            ? data.errorMessages.join("\n")
-                : "Invalid player name! Try again!";
 
+        if (data.status === "OK") {
+            sessionId = data.session;
+
+            document.getElementById("SelectionArea").style.display = "none";
+            document.getElementById("GameArea").style.display = "block";
+
+            loadQuestion();
+        } else {
+            const msg= (data.errorMessages && data.errorMessages.length)
+                ? data.errorMessages.join("\n")
+                : "Invalid player name! Try again!";
             alert(msg);
-            return;
+            //reopen modal so player can try again
+            document.getElementById("Modalname").style.display = "flex";
+            document.getElementById("player-name").focus();
         }
-    }catch(error) {
+    }
+    catch(error){
         console.error("Network Error: " + error);
+        alert("Network error. Try again!");
     }
 }
 
@@ -163,7 +174,7 @@ async function loadQuestion() {
                 //On click call the submitAnswer() function with btn.dataset.value as the parameter
                 document.querySelectorAll(".boolBtn").forEach(btn=>{
                     btn.addEventListener("click", ()=>submitAnswer(btn.dataset.value));
-                    });
+                });
                 break;
             //In case of integer create an input box of type integer
             case "INTEGER":
@@ -298,7 +309,7 @@ async function updateScore(){
         document.getElementById("scoreDisplay").innerText = `Score: ${data.score}`;
     } catch (error){
         console.error("Network Error: " + error);
-    }      
+    }
 }
 
 /* ===========================
@@ -353,7 +364,7 @@ async function createLeaderboard () {
         if (sessionId) {
             url = `${API_LINK}/leaderboard?session=${sessionId}&sorted&limit=10`;
         }
-            //Use treasure hunt ID if no session
+        //Use treasure hunt ID if no session
         else if (selectedTreasureHunt) {
             url = `${API_LINK}/leaderboard?treasure-hunt-id=${selectedTreasureHunt}&sorted&limit=10`;
         }
@@ -365,7 +376,7 @@ async function createLeaderboard () {
         //Make the API call
         const response = await fetch(url);
         const data = await response.json();
-        
+
         //Check if response was successful
         if (data.status !== "OK") {
             console.error("LeaderBoard Error:", data.errorMessages);
@@ -386,10 +397,10 @@ async function createLeaderboard () {
 function renderLeaderboard(leaderboard, treasureHuntName) {
     //Gets the container where the leader board will be displayed
     const container = document.getElementById("LeaderBoardList");
-    
+
     //Clear any existing content
     container.innerHTML = "";
-    
+
     //Create and add the title element
     const titleElement = document.createElement("li");
     titleElement.className = "leaderboard-title";
@@ -404,17 +415,17 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
 
     //Loop through each player in the leaderboard array
     leaderboard.forEach ((player, index) => {
-        
+
         //Create a list item for each player
         const listItem = document.createElement("li");
         listItem.className = "leaderboard-item";
-        
+
         //Formatting the completion time text
         let completionTimeText;
         if (player.completionTime === 0) {
             completionTimeText = "In progress";
         }
-        else { 
+        else {
             const date = new Date(player.completionTime);
             completionTimeText = date.toLocaleString();
         }
@@ -425,17 +436,17 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
         //Add the filled list item to the container
         container.appendChild(listItem);
     });
-        //Hide the other UI sections
-        document.getElementById("SelectionArea").style.display = "none";
-        document.getElementById("GameArea").style.display = "none";
-    
-        //Show the leaderboard
-        document.getElementById("LeaderBoard").style.display = "block";
+    //Hide the other UI sections
+    document.getElementById("SelectionArea").style.display = "none";
+    document.getElementById("GameArea").style.display = "none";
+
+    //Show the leaderboard
+    document.getElementById("LeaderBoard").style.display = "block";
 }
-    
-    
-        
-        
+
+
+
+
 
 /* ===========================
    HELPER FUNCTIONS
@@ -450,27 +461,11 @@ function disableButtons(value){
    EVENT LISTENER
    ========================== */
 document.getElementById("submitTrHunt").addEventListener("click", startGame);
+document.getElementById("startbutton").addEventListener("click", startModal);
+document.getElementById("cancelbutton").addEventListener("click",closeModal);
 
 /* ===========================
    INITIAL LOAD(WHEN APP LAUNCHES)
    ========================== */
 getTreasureHunts();
 createLeaderboard();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
