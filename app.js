@@ -75,7 +75,9 @@ function startGame(){
     document.getElementById("player-name").focus();
 }
 
-//close modal
+/* ===========================
+   PLAYER NAME MODAL FUNCTIONS
+   ========================== */
 function closeModal(){
     document.getElementById("Modalname").style.display="none";
     document.getElementById("player-name").value="";
@@ -122,6 +124,20 @@ async function startModal() {
         alert("Network error. Try again!");
     }
 }
+
+/* ===========================
+   LEADERBOARD MODAL FUNCTIONS
+   ========================== */
+
+
+
+
+
+
+
+
+
+
 
 /* ===========================
    LOAD QUESTION
