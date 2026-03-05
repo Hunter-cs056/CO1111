@@ -359,20 +359,6 @@ async function sendLocation() {
    ========================== */
 async function createLeaderboard () {
     try {
-        //Choose which parameter to use
-        //let url;
-        //Use session ID if available
-      //  if (sessionId) {
-        //    url = `${API_LINK}/leaderboard?session=${sessionId}&sorted&limit=10`;
-       // }
-        //Use treasure hunt ID if no session
-      //  else if (selectedTreasureHunt) {
-       //     url = `${API_LINK}/leaderboard?treasure-hunt-id=${selectedTreasureHunt}&sorted&limit=10`;
-      //  }
-      //  else {
-       //     console.error("Cannot load leaderboard");
-       //     return;
-        //}
 
         //Make the API call
         const response = await fetch(`${API_LINK}/leaderboard?session=${sessionId}&sorted&limit=10`);
@@ -438,8 +424,8 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
         container.appendChild(listItem);
     });
     //Hide the other UI sections
-    document.getElementById("SelectionArea").style.display = "none";
-    document.getElementById("GameArea").style.display = "none";
+    //document.getElementById("SelectionArea").style.display = "none";
+    //document.getElementById("GameArea").style.display = "none";
 
     //Show the leaderboard
     document.getElementById("LeaderBoard").style.display = "block";
