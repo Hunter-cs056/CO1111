@@ -180,7 +180,7 @@ headernav {
 
 .startBtn{
     display:block;
-    width:100px;
+    width:300px;
     margin: auto;
     transition:0.3s;
 }
@@ -278,6 +278,11 @@ headernav {
     .iconBtn {
         width: 20px;
     }
+    .startBtn{
+
+    width:20px;
+    }
+  
 
     h1 {
         font-size: 30px;
