@@ -360,22 +360,22 @@ async function sendLocation() {
 async function createLeaderboard () {
     try {
         //Choose which parameter to use
-        let url;
+        //let url;
         //Use session ID if available
-        if (sessionId) {
-            url = `${API_LINK}/leaderboard?session=${sessionId}&sorted&limit=10`;
-        }
+      //  if (sessionId) {
+        //    url = `${API_LINK}/leaderboard?session=${sessionId}&sorted&limit=10`;
+       // }
         //Use treasure hunt ID if no session
-        else if (selectedTreasureHunt) {
-            url = `${API_LINK}/leaderboard?treasure-hunt-id=${selectedTreasureHunt}&sorted&limit=10`;
-        }
-        else {
-            console.error("Cannot load leaderboard");
-            return;
-        }
+      //  else if (selectedTreasureHunt) {
+       //     url = `${API_LINK}/leaderboard?treasure-hunt-id=${selectedTreasureHunt}&sorted&limit=10`;
+      //  }
+      //  else {
+       //     console.error("Cannot load leaderboard");
+       //     return;
+        //}
 
         //Make the API call
-        const response = await fetch(url);
+        const response = await fetch(`${API_LINK}/leaderboard?session=${sessionId}&sorted&limit=10`);
         const data = await response.json();
 
         //Check if response was successful
