@@ -135,9 +135,11 @@ h1 {
     gap: 15px;
     margin-left: auto;
 }
-.imglogo {
-    height: 40px;
-    width: 20px;
+#imglogo {
+    width: 50px; 
+    height: auto;  
+    margin-right: 10px; 
+}
 }
 .header img {
     height: 40px;
@@ -407,4 +409,9 @@ headernav {
 #cancelbutton:hover{
     background:#ff4444;
     color:black;
+}
+@media (max-width: 600px) {
+    #imglogo {
+        width: 40px;  
+    }
 }
