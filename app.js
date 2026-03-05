@@ -150,7 +150,8 @@ async function loadQuestion() {
             return;
         }
         //If no ERROR appears and the TrHunt is not completed already,the function will continue as expected
-
+        //Call the createLeader Board
+        createLeaderboard();
         //Display the question Text
         document.getElementById("QuestionText").innerHTML=data.questionText;
 
@@ -468,4 +469,3 @@ document.getElementById("cancelbutton").addEventListener("click",closeModal);
    INITIAL LOAD(WHEN APP LAUNCHES)
    ========================== */
 getTreasureHunts();
-createLeaderboard();
