@@ -447,10 +447,6 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
     document.getElementById("LeaderBoard").style.display = "block";
 }
 
-
-
-
-
 /* ===========================
    HELPER FUNCTIONS
    ========================== */

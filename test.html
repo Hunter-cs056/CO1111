@@ -1,4 +1,4 @@
-<!-- This is the test.html here we will be testing our app.html functions
+﻿<!-- This is the test.html here we will be testing our app.html functions
     We already have tested our getLeaderBoard() function, using this as example we have to
     test the other functions that can be found at https://codecyprus.org/th/testing
     After testing the functionality show a UI calling the test API from the link above display the responding UI
@@ -15,10 +15,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Leaderboard test</title>
+    <title>Leaderboard and List test</title>
 </head>
 <body>
-
 
 <p>Enter input:</p>
 
@@ -34,6 +33,27 @@
         <th>Computed leaderboard size</th>
         <th>Expected numOfPlayers</th>
         <th>Computed numOfPlayers</th>
+        <th>Expected status</th>
+        <th>Computed status</th>
+        <th>Pass/Fail</th>
+    </tr>
+</table>
+
+<hr>
+
+<h3>/list tests</h3>
+<p>Enter number-of-ths:</p>
+
+<form action="javascript:testListManually()">
+    <input type="text" id="number-of-ths" />
+    <button id="submit-list">Submit list</button>
+</form>
+
+<table id="list-test-results-table" border="1">
+    <tr>
+        <th>Input</th>
+        <th>Expected list size</th>
+        <th>Computed list size</th>
         <th>Expected status</th>
         <th>Computed status</th>
         <th>Pass/Fail</th>
@@ -114,13 +134,79 @@
                 "</tr>";
         }
 
-
-
         testResultsTable.innerHTML += html;
 
     }
 
+    // /list test functions (added without changing leaderboard functions)
+    const listTestResultsTable = document.getElementById('list-test-results-table');
+
+    const listTestPairs = [
+        { input: null, listSize: 10, status: "OK", label: "empty" },
+        { input: 2, listSize: 2, status: "OK", label: "2" },
+        { input: 5, listSize: 5, status: "OK", label: "5" },
+        { input: -1, listSize: 10, status: "OK", label: "-1" },
+        { input: "abc", listSize: 10, status: "OK", label: "abc" }
+    ];
+
+    function buildListUrl(value) {
+        const base = "https://codecyprus.org/th/test-api/list";
+        if (value === null || value === "") {
+            return base;
+        }
+        return `${base}?number-of-ths=${encodeURIComponent(value)}`;
+    }
+
+    async function testListManually() {
+        const numberField = document.getElementById('number-of-ths');
+        const raw = numberField.value.trim();
+        const value = raw === "" ? null : raw;
+
+        const response = await fetch(buildListUrl(value));
+        const json = await response.json();
+        const status = json.status;
+        const listSize = json.treasureHunts.length;
+
+        if (status === "OK") {
+            alert(`Status: ${status} | list size: ${listSize}`);
+        }
+        else {
+            alert("FAIL");
+        }
+    }
+
+    async function getList() {
+        let html = "";
+
+        for (let pair of listTestPairs) {
+            const response = await fetch(buildListUrl(pair.input));
+            const json = await response.json();
+            const status = json.status;
+            const listSize = json.treasureHunts.length;
+
+            let success = true;
+            if (status !== pair.status) {
+                success = false;
+            }
+            if (listSize !== pair.listSize) {
+                success = false;
+            }
+
+            html += "<tr>" +
+                "    <td>" + pair.label + "</td>\n" +
+                "    <td>" + pair.listSize + "</td>\n" +
+                "    <td>" + listSize + "</td>\n" +
+                "    <td>" + pair.status + "</td>\n" +
+                "    <td>" + status + "</td>\n" +
+                "    <td>" + (success ? "✅" : "❌") + "</td>" +
+                "</tr>";
+        }
+
+        listTestResultsTable.innerHTML += html;
+    }
+
     getLeaderboard();
+    getList();
 
 </script>
 
@@ -128,3 +214,5 @@
 
 </body>
 </html>
+
+
