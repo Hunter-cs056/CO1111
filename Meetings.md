@@ -58,8 +58,30 @@ do a small research on the loading animations
 for example making the input/Choice option disappear when the user presses submit. I will also work on fixing other bugs
 involing the submit and skip button.Maximos will also work on applying cookies to our website
 5.Rania will work on the class worksheet 18 in order to work on making our app downloadable on mobile and pc devices
-    
 
+##OUR FOURTH MEETING:
+05/03/2026 Thursday 4:17pm
+Participants: Maximos, Rania, Alex, Rudolf, George
+Location: Library
+Topic: App functionality and Design 
+Discussions:
+Goals Accomplished from last week:
+1.George Created logo link buttons at the end of our index.html page, while customizing the start game button
+2.Alex created and designed a Modal that now lets the user enter a username and that user-name it is used to call the API instead of using
+a random one.
+3.Rania made our app available for download on every device while also contributing to the design of the app.html
+4.Rudolf completed the leaderboard API call and with Maximos they resolved its issues making it ready to use 
+5.Maximos created the test.html and added instructions and an example for everyone to read and understand how to conduct testing
+thrpough the rest of the functions
+Goals for the upcoming Week
+1.**George** will work on fixing the back to top button making it easer to access, while fixing the sizes and the placements of the start
+and info /buttons both in their regular form and in their burger button form.
+2.**Rudolf**  will work on creating a modal for the leaderboard while as well fixing the playerName issue 
+3.**Alex** AND **George** will be responsible for Utilizing  the test.html to  test the rest of the js functions using the example 
+I already provided them with
+4.**Rania** will  work on designing the TreasureHunt lists/Questions/Answers/SKIP/SUBMIT buttons.
+5.**Maximos** will work on fixing the MCQ and BOOL question submit buttons, so when spammed they do not exploit the score.Also
+I will be adding new content on our social platforms in order to create posts to embed into our index.html
 
 
 

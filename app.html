@@ -7,49 +7,57 @@
     <link rel="stylesheet" href="ss.css">
 </head>
 <body>
+<!--Modal Section-->
+<div id="Modalname" style="display: none;">
+    <div class="modal-content">
+        <h3>Enter Your Name</h3>
+        <input type="text" id="player-name" placeholder="Your name">
+        <button id="startbutton">Start Game</button>
+        <button id="cancelbutton">Cancel</button>
+    </div>
+</div>
+<!--This Section is for the Navigation Bar/ Header-->
+<header>
+    <a href="index.html" class="title"><h3 class="title">EMERALD HUNTERS</h3></a>
+</header>
 
-    <!--This Section is for the Navigation Bar/ Header-->
-    <header>
-        <a href="index.html" class="title"><h3 class="title">EMERALD HUNTERS</h3></a>
-    </header>
-
-    <!--This Section is for the Main content of the page-->
-    <main>
-<!--Selection Area with  Treasure Hunts to select from and Reset or Submit buttons as well-->
-        <section id="SelectionArea">
-            <h3>Select TreasureHunt</h3>
-            <div id="TrHuntList"></div>
-            <button id="submitTrHunt">Start</button>
-        </section>
-
-
-<!--GameArea with TreasureHunt-Question and Options to Answer with a Submit/Skip button-->
-        <section id="GameArea" style="display: none">
-            <h3 id="QuestionText"></h3>
-            <div id="AnswerArea"></div>
-
-            <button id ="SubmitAnswerBtn">Submit Answer</button>
-            <button id ="SkipAnswerBtn">Skip Answer</button>
-            <button id ="SendLocationBtn" style="display: none">Share Location</button>
-
-            <div id="scoreDisplay">Score: 0</div>
-            <div id="feedback"></div>
-        </section>
-
-<!--LeaderBoard Area-->
-        <section id="LeaderBoard" style="display: none">
-            <h3>LeaderBoard</h3>
-            <ul id="LeaderBoardList"></ul>
-        </section>
-
-    </main>
+<!--This Section is for the Main content of the page-->
+<main>
+    <!--Selection Area with  Treasure Hunts to select from and Reset or Submit buttons as well-->
+    <section id="SelectionArea">
+        <h3>Select TreasureHunt</h3>
+        <div id="TrHuntList"></div>
+        <button id="submitTrHunt">Start</button>
+    </section>
 
 
-    <!--This Section is for the Footer of the page-->
-    <footer>
-        <p>2026 Emerald Hunters. All rights reserved.</p>
-        <p>FIND THE TREASURE</p>
-    </footer>
+    <!--GameArea with TreasureHunt-Question and Options to Answer with a Submit/Skip button-->
+    <section id="GameArea" style="display: none">
+        <h3 id="QuestionText"></h3>
+        <div id="AnswerArea"></div>
+
+        <button id ="SubmitAnswerBtn">Submit Answer</button>
+        <button id ="SkipAnswerBtn">Skip Answer</button>
+        <button id ="SendLocationBtn" style="display: none">Share Location</button>
+
+        <div id="scoreDisplay">Score: 0</div>
+        <div id="feedback"></div>
+    </section>
+
+    <!--LeaderBoard Area-->
+    <section id="LeaderBoard" style="display: none">
+        <h3>LeaderBoard</h3>
+        <ul id="LeaderBoardList"></ul>
+    </section>
+
+</main>
+
+
+<!--This Section is for the Footer of the page-->
+<footer>
+    <p>2026 Emerald Hunters. All rights reserved.</p>
+    <p>FIND THE TREASURE</p>
+</footer>
 <script src="app.js"></script>
 </body>
 </html>
