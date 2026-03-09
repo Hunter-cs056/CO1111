@@ -118,7 +118,7 @@ h1 {
     padding-bottom: 12px;
 }
 
-.nav {
+. {
     text-decoration: none;
     font-family: 'Press Start 2P', monospace;
     font-size: 14px;
@@ -186,7 +186,9 @@ headernav {
     transform: scale(1.15);
     filter: drop-shadow(0 0 15px #00ff88);
 }
-
+.nav {
+    text-decoration:none;
+}
 .startBtn{
     display:block;
     width:150px;
