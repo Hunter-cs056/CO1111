@@ -415,3 +415,10 @@ headernav {
         width: 40px;  
     }
 }
+.start-nav {
+    background-color: rgba(46, 255, 110, 0.1);
+    border-radius: 4px;
+}
+.start-nav:hover {
+    background-color: rgba(46, 255, 110, 0.2);
+}
