@@ -140,7 +140,15 @@ h1 {
     height: auto;  
     margin-right: 10px; 
 }
-
+.nav-link {
+    color: #9ef0c0;
+    text-decoration: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
 .header img {
     height: 40px;
     width: 20px;
