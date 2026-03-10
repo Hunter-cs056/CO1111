@@ -108,7 +108,9 @@ header {
     width: 100%;
     max-width: 320px;
 }
-
+.footer-content {
+     border-top: 3px solid #2eff6e;
+}
 h1 {
     font-size: 30px;
     margin-top: 60px;
