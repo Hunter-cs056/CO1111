@@ -432,3 +432,54 @@ headernav {
 .start-nav:hover {
     background-color: rgba(46, 255, 110, 0.2);
 }
+
+.FollowUs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.iconBtn {
+    width: 32px;
+    height: 32px;
+    transition: all 0.3s ease;
+}
+
+.iconBtn:hover {
+    transform: scale(1.2);
+
+}
+
+.social-link {
+    display: inline-block;
+    text-decoration: none;
+
+}
+
+@media (max-width: 600px) {
+    .FollowUs {
+        gap: 20px;
+    }
+    
+    .iconBtn {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 400px) {
+    .FollowUs {
+        gap: 20px;
+    }
+    
+    .iconBtn {
+        width: 24px;
+        height: 24px;
+    }
+}
