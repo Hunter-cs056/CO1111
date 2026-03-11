@@ -434,8 +434,7 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
     //document.getElementById("SelectionArea").style.display = "none";
     //document.getElementById("GameArea").style.display = "none";
 
-    //Show the leaderboard
-    document.getElementById("leaderboardModal").style.display = "block";
+    
 }
 
 
@@ -444,6 +443,8 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
    ========================== */
     function openLeaderBoardModal() {
         createLeaderBoard();
+        //Show the leaderboard
+        document.getElementById("leaderboardModal").style.display = "block";
     }
 
     function closeLeaderBoardModal() {
