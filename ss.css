@@ -514,3 +514,9 @@ label.inline-label {
     cursor: pointer;
 }
 
+#submitTrHunt {
+    display:block;
+    width:150px;
+    margin: auto;
+    transition:0.3s;
+}
