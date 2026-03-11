@@ -2,7 +2,10 @@ html {
     height: 100%;
     scroll-behavior: smooth;
 }
-
+#gif {
+    width: 25px;
+    height: 25px;
+}
 body{
     height: 100%;
     margin: 0;
