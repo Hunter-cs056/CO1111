@@ -128,13 +128,13 @@ async function startModal() {
 /* ===========================
    LEADERBOARD MODAL FUNCTIONS
    ========================== */
+    function openLeaderBoardModal() {
+        createLeaderBoard();
+    }
 
-
-
-
-
-
-
+    function closeLeaderBoardModal() {
+        document.getElementById("leaderboardModal").style.display = "none";
+    }
 
 
 
@@ -399,7 +399,7 @@ async function createLeaderboard () {
    ========================== */
 function renderLeaderboard(leaderboard, treasureHuntName) {
     //Gets the container where the leader board will be displayed
-    const container = document.getElementById("LeaderBoardList");
+    const container = document.getElementById("leaderboardlist");
 
     //Clear any existing content
     container.innerHTML = "";
@@ -444,7 +444,7 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
     //document.getElementById("GameArea").style.display = "none";
 
     //Show the leaderboard
-    document.getElementById("LeaderBoard").style.display = "block";
+    document.getElementById("leaderboardModal").style.display = "block";
 }
 
 /* ===========================
@@ -462,6 +462,8 @@ function disableButtons(value){
 document.getElementById("submitTrHunt").addEventListener("click", startGame);
 document.getElementById("startbutton").addEventListener("click", startModal);
 document.getElementById("cancelbutton").addEventListener("click",closeModal);
+document.getElementById("leaderboardBtn").addEventListener("click",openLeaderBoardModal);
+document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLeaderBoardModal);
 
 /* ===========================
    INITIAL LOAD(WHEN APP LAUNCHES)
