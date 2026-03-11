@@ -125,16 +125,7 @@ async function startModal() {
     }
 }
 
-/* ===========================
-   LEADERBOARD MODAL FUNCTIONS
-   ========================== */
-    function openLeaderBoardModal() {
-        createLeaderBoard();
-    }
 
-    function closeLeaderBoardModal() {
-        document.getElementById("leaderboardModal").style.display = "none";
-    }
 
 
 
@@ -446,6 +437,18 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
     //Show the leaderboard
     document.getElementById("leaderboardModal").style.display = "block";
 }
+
+
+/* ===========================
+   LEADERBOARD MODAL FUNCTIONS
+   ========================== */
+    function openLeaderBoardModal() {
+        createLeaderBoard();
+    }
+
+    function closeLeaderBoardModal() {
+        document.getElementById("leaderboardModal").style.display = "none";
+    }
 
 /* ===========================
    HELPER FUNCTIONS
