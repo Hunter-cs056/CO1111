@@ -484,14 +484,20 @@ headernav {
     }
 }
 label {
-    display: inline-block;         
-    font-family: 'Press Start 2P', monospace; 
-    font-size: 14px;
-    color: #9ef0c0;              
-    text-shadow: 0 0 5px #1f9f4f;   
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;            
-    cursor: default;                
+   position: relative;
+    display: block;
+    border: 1px solid rgba(0, 255, 59, 0.78);
+    border-radius: 16px;
+    padding: 18px 22px;
+    text-align: center;
+    list-style: none;
+    color: #d0f0c0;
+    box-shadow: 0 0 0 2px #0f1f0f, 0 0 0 5px #071107, 0 0 15px #206620;
+    background: #0b130b;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 400px;
+    transition: all 0.3s ease;              
 
 }
 label:hover {
