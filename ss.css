@@ -483,3 +483,27 @@ headernav {
         height: 24px;
     }
 }
+label {
+    display: inline-block;         
+    font-family: 'Press Start 2P', monospace; 
+    font-size: 14px;
+    color: #9ef0c0;              
+    text-shadow: 0 0 5px #1f9f4f;   
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;            
+    cursor: default;                
+
+}
+label:hover {
+    color: #c5ffd0;
+    text-shadow: 0 0 8px #2eff6e, 0 0 12px #00aa33;
+}
+label.inline-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    margin-right: 20px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
