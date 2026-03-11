@@ -441,8 +441,13 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
 /* ===========================
    LEADERBOARD MODAL FUNCTIONS
    ========================== */
-    function openLeaderBoardModal() {
-        createLeaderBoard();
+    async function openLeaderBoardModal() {
+        try {
+            await createLeaderboard();
+        }
+        catch (error) {
+            console.error("Failed to load leaderboard:", error);
+        }
         //Show the leaderboard
         document.getElementById("leaderboardModal").style.display = "block";
     }
