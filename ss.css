@@ -519,4 +519,6 @@ label.inline-label {
     width:150px;
     margin: auto;
     transition:0.3s;
+    border: 1px solid rgba(0, 255, 59, 0.78);
+    border-radius: 16px;
 }
