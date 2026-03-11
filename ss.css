@@ -513,3 +513,7 @@ label.inline-label {
     margin-bottom: 0;
     cursor: pointer;
 }
+input[type="radio"] {
+    display: none;
+}
+
