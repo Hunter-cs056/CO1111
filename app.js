@@ -399,7 +399,7 @@ async function createLeaderboard () {
    ========================== */
 function renderLeaderboard(leaderboard, treasureHuntName) {
     //Gets the container where the leader board will be displayed
-    const container = document.getElementById("leaderboardlist");
+    const container = document.getElementById("leaderboardList");
 
     //Clear any existing content
     container.innerHTML = "";
@@ -462,7 +462,7 @@ function disableButtons(value){
 document.getElementById("submitTrHunt").addEventListener("click", startGame);
 document.getElementById("startbutton").addEventListener("click", startModal);
 document.getElementById("cancelbutton").addEventListener("click",closeModal);
-document.getElementById("leaderboardBtn").addEventListener("click",openLeaderBoardModal);
+document.getElementById("leaderboardbtn").addEventListener("click",openLeaderBoardModal);
 document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLeaderBoardModal);
 
 /* ===========================
