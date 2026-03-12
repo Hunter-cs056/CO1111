@@ -403,7 +403,7 @@ headernav {
 #startbutton{
     padding:8px 16px;
     border:2px solid #00ff88;
-    color:#00ff88;
+    color:black;
     border-radius:6px;
     cursor:pointer;
     transition: 0.2s;
