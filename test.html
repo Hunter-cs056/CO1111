@@ -59,6 +59,48 @@
     </tr>
 </table>
 
+<!-- /start list testing part -->
+<hr>
+
+<h3>/start test</h3>
+<p>Enter player:</p>
+
+<form action="javascript:testStartManually()">
+    <input type="text" id="player"/>
+    <button id="submitstart">Sumbit start</button>
+</form>
+
+<table id="start-test-results-table" border="1">
+    <tr>
+        <th>Input</th>
+        <th>Expected start</th>
+        <th>Computed start</th>
+        <th>Pass/Fail</th>
+    </tr>
+</table>
+<!--/question testing part-->
+<hr>
+
+<h3>/question test</h3>
+<p>Question API tests:</p>
+
+<table id="question-test-results-table" border="1">
+    <tr>
+        <th>Input</th>
+        <th>Expected completed</th>
+        <th>Computed completed</th>
+        <th>Expected questionType</th>
+        <th>Computed questionType</th>
+        <th>Expected canBeSkipped</th>
+        <th>Computed canBeSkipped</th>
+        <th>Expected requiresLocation</th>
+        <th>Computed requiresLocation</th>
+        <th>Expected status</th>
+        <th>Computed status</th>
+        <th>Pass/Fail</th>
+    </tr>
+</table>
+
 <script>
 
     const testResultsTable = document.getElementById('test-results-table');
@@ -204,9 +246,143 @@
         listTestResultsTable.innerHTML += html;
     }
 
+    //start test
+    const startTestResultsTable = document.getElementById('start-test-results-table');
+
+    const startTestPairs = [
+        { input: null, status: "OK", label: "empty" },
+        {input:"INACTIVE",status:"ERROR",label:"INACTIVE"},
+        {input:"EMPTY",status:"ERROR",label:"EMPTY"},
+        {input:"PLAYER",status:"ERROR",label:"PLAYER"},
+        {input:"APP",status:"ERROR",label:"APP"},
+        {input:"UNKNOWN",status:"ERROR",label:"UNKNOWN"},
+        {input:"MISSING_PARAMETER",status:"ERROR",label:"MISSING_PARAMETER"}
+    ];
+    function buildStartUrl(value){
+        const base = "https://codecyprus.org/th/test-api/start";
+
+        if (value === null || value === "") {
+            return base;
+        }
+        return `${base}?player=${encodeURIComponent(value)}`;
+    }
+    async function testStartManually() {
+        const playerField=document.getElementById('player');
+        const raw=playerField.value.trim();
+        const value = raw === "" ? null : raw;
+        const response = await fetch(buildStartUrl(value));
+        const json = await response.json();
+
+        alert(`Status: ${json.status}`);
+    }
+    async function getStart(){
+        let html = "";
+        for (let pair of startTestPairs) {
+            const response = await fetch(buildStartUrl(pair.input));
+            const json = await response.json();
+            const status = json.status;
+
+            let success = true;
+            if(status!== pair.status) {
+                success = false;
+            }
+            html += "<tr>" +
+                "    <td>" + pair.label + "</td>\n" +
+                "    <td>" + pair.status + "</td>\n" +
+                "    <td>" + status + "</td>\n" +
+                "    <td>" + (success ? "✅" : "❌") + "</td>\n" +
+                "</tr>";
+        }
+        startTestResultsTable.innerHTML += html;
+    }
+
+    //question test
+    const questionResultsTable=document.getElementById('question-test-results-table');
+
+    const questionTestPairs = [
+        {completed:false,
+        questionType:"BOOLEAN",
+        canBeSkipped:false,
+        requiresLocation:false,
+        status:"OK",
+        label:"BOOLEAN"
+        },
+        {completed:false,
+            questionType:"MCQ",
+            canBeSkipped:true,
+            requiresLocation:false,
+            status:"OK",
+            label:"MCQ skip"
+        },
+        {completed:true,
+            questionType:"TEXT",
+            canBeSkipped:false,
+            requiresLocation:false,
+            status:"OK",
+            label:"completed TEXT"
+        }
+    ];
+    function buildQuestionUrl(pair){
+        const base = "https://codecyprus.org/th/test-api/question";
+        let params=[];
+
+        if(pair.completed===true){
+            params.push("completed=true");
+        }
+        if(pair.questionType){
+            params.push("question-type="+encodeURIComponent(pair.questionType));
+        }
+        if(pair.canBeSkipped===true){
+            params.push("can-be-skipped=true");
+        }
+        if(pair.requiresLocation===true){
+            params.push("requires-location=true");
+        }
+        if(params.length===0){
+            return base;
+        }
+        return  `${base}?${params.join("&")}`;
+    }
+
+    async function getQuestion(){
+        let html = "";
+        for (let pair of questionTestPairs) {
+            const response = await fetch(buildQuestionUrl(pair));
+            const json = await response.json();
+            const status = json.status;
+            const completed=json.completed;
+            const questionType=json.questionType;
+            const canBeSkipped=json.canBeSkipped;
+            const requiresLocation=json.requiresLocation;
+
+            let success=true;
+            if(status!== pair.status) success=false;
+            if(completed!==pair.completed)success=false;
+            if(questionType!== pair.questionType)success=false;
+            if(canBeSkipped!==pair.canBeSkipped)success=false;
+            if(requiresLocation!==pair.requiresLocation)success=false;
+
+            html += "<tr>" +
+                "    <td>" + pair.label + "</td>\n" +
+                "    <td>" + pair.completed + "</td>\n" +
+                "    <td>" + completed + "</td>\n" +
+                "    <td>" + pair.questionType + "</td>\n" +
+                "    <td>" + questionType + "</td>\n" +
+                "    <td>" + pair.canBeSkipped + "</td>\n" +
+                "    <td>" + canBeSkipped + "</td>\n" +
+                "    <td>" + pair.requiresLocation + "</td>\n" +
+                "    <td>" + requiresLocation + "</td>\n" +
+                "    <td>" + pair.status + "</td>\n" +
+                "    <td>" + status + "</td>\n" +
+                "    <td>" + (success ? "✅" : "❌") + "</td>\n" +
+                "</tr>";
+        }
+        questionResultsTable.innerHTML += html;
+    }
     getLeaderboard();
     getList();
-
+    getStart();
+getQuestion();
 </script>
 
 
