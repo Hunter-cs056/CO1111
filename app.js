@@ -407,8 +407,10 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
     headerElement.innerHTML = "<strong>Rank</strong> <strong>Player</strong> <strong>Score</strong> <strong>Completion Time</strong>";
     container.appendChild(headerElement);
 
+    console.log(leaderboard);
+
     //Loop through each player in the leaderboard array
-    leaderboard.forEach ((player, index) => {
+    leaderboard.forEach ((leaderboardEntry, index) => {
 
         //Create a list item for each player
         const listItem = document.createElement("li");
@@ -416,16 +418,18 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
 
         //Formatting the completion time text
         let completionTimeText;
-        if (player.completionTime === 0) {
+        if (leaderboardEntry.completionTime === 0) {
             completionTimeText = "In progress";
         }
         else {
-            const date = new Date(player.completionTime);
+            const date = new Date(leaderboardEntry.completionTime);
             completionTimeText = date.toLocaleString();
         }
 
+        console.log(leaderboardEntry.name);
+
         //Fill the list item
-        listItem.innerHTML = `<span>${index + 1}</span> <span>${player.name}</span> <span>${player.score}</span> <span>${completionTimeText}</span>`;
+        listItem.innerHTML = `<span>${index + 1}</span> <span>${leaderboardEntry.player}</span> <span>${leaderboardEntry.score}</span> <span>${completionTimeText}</span>`;
 
         //Add the filled list item to the container
         container.appendChild(listItem);
