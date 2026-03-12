@@ -477,8 +477,8 @@ document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLe
 /* ===========================
    LINK BUTTONS
    ========================== */
-let links = document.getElementsByClassName("social-link")
-links.setAttribute("target", "_blank");
+//let links = document.getElementsByClassName("social-link")
+//links.setAttribute("target", "_blank");
 
 
 /* ===========================
