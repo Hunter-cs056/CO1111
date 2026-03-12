@@ -475,6 +475,13 @@ document.getElementById("leaderboardbtn").addEventListener("click",openLeaderBoa
 document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLeaderBoardModal);
 
 /* ===========================
+   LINK BUTTONS
+   ========================== */
+let links = document.getElementsByClassName("social-link")
+links.setAttribute("target", "_blank");
+
+
+/* ===========================
    INITIAL LOAD(WHEN APP LAUNCHES)
    ========================== */
 getTreasureHunts();
