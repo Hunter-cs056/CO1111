@@ -18,10 +18,7 @@ body{
     text-align: center;
     text-decoration: none;
     background: radial-gradient(
-        black 0%
-        #1f5326 40%
-        #1a1a1a 80%
-        );
+ 
 }
 main {
     flex: 1;
