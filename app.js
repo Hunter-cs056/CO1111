@@ -489,3 +489,11 @@ document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLe
    INITIAL LOAD(WHEN APP LAUNCHES)
    ========================== */
 getTreasureHunts();
+
+// cookie functions 
+function setCookie(cName, Value, expDays) {
+    let date = new Date();
+    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+    let exp = "expires=" + date.toUTCString();
+    document.cookie = cName + "=" + cValue + ";" + exp + ";path=/";
+}
