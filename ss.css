@@ -521,72 +521,40 @@ label.inline-label {
     cursor: pointer;
 }
 
-#submitTrHunt {
-    display:block;
-    width:150px;
-    margin: auto;
-    transition:0.3s;
-    border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 16px;
+#submitTrHunt,
+#SubmitAnswerBtn,
+#SkipAnswerBtn,
+#SendLocationBtn,
+#leaderboardbtn,
+#startbutton,
+#cancelbutton,
+#closeLeaderboardBtn {
+    display: block;
+    width: 200px;
+    margin: 15px auto;
+    border: 2px solid #2eff6e;
+    border-radius: 8px;
+   
 }
-closeLeaderboardBtn {
-       display:block;
-    width:150px;
-    margin: auto;
-    transition:0.3s;
-    border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 16px;
+#startbutton {
+    border-width: 3px;
+    font-weight: bold;
 }
 #SendLocationBtn {
-    display:block;
-    width:150px;
-    margin: auto;
-    transition:0.3s;
-    border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 16px;
-}
-#leaderboardbtn {
-    display:block;
-    width:150px;
-    margin: auto;
-    transition:0.3s;
-    border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 16px;
-    margin-left: auto;
-}
-#AnswerArea {
-    display:block;
-    width:170px;
-    margin: auto;
-    transition:0.3s;
-    border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 16px;
+    border-color: #4effb0;
+   
 }
 #SkipAnswerBtn {
-    display:block;
-    width:150px;
-    margin: auto;
-    transition:0.3s;
-    border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 16px;
+    border-color: #ffaa2e;
+    box-shadow: 0 0 0 2px #3f2f0f, 0 0 0 4px #1f1707, 0 0 15px #ffaa2e;
+}
+#SkipAnswerBtn:hover {
+    border-color: #ffbb4d;
+    color: #ffbb4d;
+    text-shadow: 0 0 8px #ffaa2e, 0 0 12px #ff8800;
 }
 
-#SkipAnswerBtn {
-    display:block;
-    width:150px;
-    margin: auto;
-    transition:0.3s;
-    border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 16px;
-}
-#SubmitAnswerBtn {
-    display:block;
-    width:150px;
-    margin: auto;
-    transition:0.3s;
-    border: 1px solid rgba(0, 255, 59, 0.78);
-    border-radius: 16px;
-}
+
 
 .submitTrHunt:hover {
    
