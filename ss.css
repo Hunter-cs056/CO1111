@@ -537,7 +537,7 @@ closeLeaderboardBtn {
     border: 1px solid rgba(0, 255, 59, 0.78);
     border-radius: 16px;
 }
-SendLocationBtn {
+#SendLocationBtn {
     display:block;
     width:150px;
     margin: auto;
@@ -545,7 +545,16 @@ SendLocationBtn {
     border: 1px solid rgba(0, 255, 59, 0.78);
     border-radius: 16px;
 }
-SkipAnswerBtn {
+#SkipAnswerBtn {
+    display:block;
+    width:150px;
+    margin: auto;
+    transition:0.3s;
+    border: 1px solid rgba(0, 255, 59, 0.78);
+    border-radius: 16px;
+}
+
+#SkipAnswerBtn {
     display:block;
     width:150px;
     margin: auto;
