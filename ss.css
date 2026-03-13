@@ -554,6 +554,14 @@ closeLeaderboardBtn {
     border-radius: 16px;
     margin-left: auto;
 }
+#AnswerArea {
+    display:block;
+    width:170px;
+    margin: auto;
+    transition:0.3s;
+    border: 1px solid rgba(0, 255, 59, 0.78);
+    border-radius: 16px;
+}
 #SkipAnswerBtn {
     display:block;
     width:150px;
