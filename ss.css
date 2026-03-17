@@ -176,7 +176,7 @@ h1 {
 }
     
 
-headernav {
+.headernav {
     display: flex;
 }
 
@@ -542,7 +542,7 @@ label.inline-label {
     border: 2px solid #2eff6e;
     border-radius: 8px;
     justify-content: left;
-    align-items: left;
+    align-items: flex-start;
     
 }
 #startbutton {
@@ -573,4 +573,63 @@ label.inline-label {
     0 0 0 5px #0f1f0f,
     0 0 25px #30ff30;
     cursor: pointer; 
+}
+/*leaderboard modal section*/
+#leaderboardModal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+#leaderboard-content{
+    position: fixed;
+    top:50%;
+    right:40px;
+    transform:translateY(-50%);
+    width:350px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #041a12;
+    border:2px solid #00ff88;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    color:#00ff88;
+    box-shadow:0 0 20px #00ff88;
+    z-index:1100;
+}
+
+#leaderboardTitle{
+    margin-bottom:20px;
+    font-size:18px;
+}
+#leaderboardList{
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+#leaderboardList li{
+    margin-bottom:10px;
+    padding:10px;
+    border:1px solid #00ff88;
+    border-radius:8px;
+    background-color:black;
+    color:#9ef0c0;
+}
+#closeLeaderboardBtn{
+    margin-top:15px;
+    padding:8px 16px;
+    border:2px solid #00ff88;
+    border-radius:6px;
+    background-color:white;
+    color:black;
+    cursor:pointer;
+    font-family: 'Press Start 2P',monospace;
+}
+#closeLeaderboardBtn:hover{
+    box-shadow:0 0 10px #00ff88;
 }
