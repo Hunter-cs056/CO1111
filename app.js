@@ -1,7 +1,7 @@
 /* ===========================
     GLOBAL VARIABLES
    ========================== */
-let sessionId = null;
+let sessionId = getCookie("sessionID");
 let selectedTreasureHunt = null;
 let playerName = null;
 
@@ -94,6 +94,7 @@ async function startModal() {
         return;
     }
     playerName = name;
+    setCookie("playerName", playerName);
     closeModal();
 
     try {
@@ -104,6 +105,7 @@ async function startModal() {
 
         if (data.status === "OK") {
             sessionId = data.session;
+            setCookie("sessionID", sessionId);
 
             document.getElementById("SelectionArea").style.display = "none";
             document.getElementById("GameArea").style.display = "block";
@@ -491,7 +493,7 @@ document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLe
 getTreasureHunts();
 
 // cookie functions 
-function setCookie(cName, Value, expDays) {
+function setCookie(cName, cValue, expDays) {
     let date = new Date();
     date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
     let exp = "expires=" + date.toUTCString();
@@ -510,7 +512,7 @@ function getCookie(cName) {
       return c.substring(name.length, c.length);
     }
   }
-  return "";
+  return null;
 }
 function checkCookie() {
   let username = getCookie("username");
