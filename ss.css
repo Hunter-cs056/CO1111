@@ -41,7 +41,7 @@ footer {
     margin-right: auto;
     background-color: black;
     color: #9ef0c0;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 1.2;
 }
 footer p {
@@ -336,7 +336,7 @@ h1 {
     .numbers {
         width: 25px;
         height: 35px;
-        font-size: 12px;
+        font-size: 10px;
     }
 }
 @media (min-width: 601px) {
@@ -654,3 +654,28 @@ label.inline-label {
         padding:10px;
     }
 }
+#backToTop {
+    position: fixed;
+    right: 20px;
+    top: 70%;
+    transform: translateY(-50%);
+    display: block;
+    padding: 8px 12px;
+    border: 2px solid #2eff6e;
+    border-radius: 12px;
+    background: #0b130b;
+    color: #9ef0c0;
+    text-decoration: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    box-shadow: 0 0 0 2px #0f1f0f, 0 0 0 5px #071107, 0 0 15px #206620;
+    z-index: 1000;
+}
+
+#backToTop:hover {
+    border-color: #00ff88;
+    color: #c5ffd0;
+    box-shadow: 0 0 0 2px #1f3f1f, 0 0 0 5px #0f1f0f, 0 0 25px #30ff30;
+}
+
+
