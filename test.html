@@ -1,4 +1,4 @@
-﻿<!-- This is the test.html here we will be testing our app.html functions
+<!-- This is the test.html here we will be testing our app.html functions
     We already have tested our getLeaderBoard() function, using this as example we have to
     test the other functions that can be found at https://codecyprus.org/th/testing
     After testing the functionality show a Visual example calling the test API from the link above display the responding UI
@@ -39,6 +39,37 @@
 </table>
 
 <hr>
+
+<h3>/leaderboard visual example</h3>
+<p>Display the leaderboard like in the app:</p>
+
+<form action="javascript:showLeaderboardVisualExample()">
+    <input type="number" id="visual-leaderboard-size" placeholder="Enter leaderboard size" />
+    <label>
+        <input type="checkbox" id="visual-leaderboard-sorted">
+        sorted
+    </label>
+    <label>
+        <input type="checkbox" id="visual-leaderboard-prize">
+        has prize
+    </label>
+    <button type="submit">Show leaderboard visual example</button>
+</form>
+
+<ul id="leaderboard-visual-result"></ul>
+
+
+<hr>
+
+<h3>/list visual example</h3>
+<p>Display the treasure hunts like in the app:</p>
+
+<form action="javascript:showListVisualExample()">
+    <input type="text" id="visual-number-of-ths" placeholder="Enter number-of-ths" />
+    <button type="submit">Show list visual example</button>
+</form>
+
+<div id="list-visual-result"></div>
 
 <h3>/list tests</h3>
 <p>Enter number-of-ths:</p>
@@ -139,7 +170,91 @@
     </label>
     <button type="submit">Show question visual example</button>
 </form>
+
+<hr>
+
 <div id="question-visual-result"></div>
+
+<h3>/answer test</h3>
+<p>Answer API tests:</p>
+
+<table id="answer-test-results-table" border="1">
+    <tr>
+        <th>Input</th>
+        <th>Expected completed</th>
+        <th>Computed completed</th>
+        <th>Expected status</th>
+        <th>Computed status</th>
+        <th>Pass/Fail</th>
+    </tr>
+</table>
+
+<hr>
+
+<h3>/answer visual example</h3>
+<p>Display answer result like in the app:</p>
+
+<form action="javascript:showAnswerVisualExample()">
+    <label>
+        <input type="checkbox" id="visual-answer-correct">
+        correct
+    </label>
+    <label>
+        <input type="checkbox" id="visual-answer-completed">
+        completed
+    </label>
+    <label>
+        <input type="checkbox" id="visual-answer-expired">
+        expired
+    </label>
+    <button type="submit">Show answer visual example</button>
+</form>
+
+<div id="answer-visual-result"></div>
+
+<hr>
+
+<h3>/score test</h3>
+<p>Score API tests:</p>
+
+<table id="score-test-results-table" border="1">
+    <tr>
+        <th>Input</th>
+        <th>Expected score</th>
+        <th>Computed score</th>
+        <th>Expected completed</th>
+        <th>Computed completed</th>
+        <th>Expected finished</th>
+        <th>Computed finished</th>
+        <th>Expected status</th>
+        <th>Computed status</th>
+        <th>Pass/Fail</th>
+    </tr>
+</table>
+
+<hr>
+
+<h3>/score visual example</h3>
+<p>Display score result like in the app:</p>
+
+<form action="javascript:showScoreVisualExample()">
+    <input type="number" id="visual-score-value" placeholder="Enter score" />
+    <label>
+        <input type="checkbox" id="visual-score-completed">
+        completed
+    </label>
+    <label>
+        <input type="checkbox" id="visual-score-finished">
+        finished
+    </label>
+    <label>
+        <input type="checkbox" id="visual-score-error">
+        error
+    </label>
+    <button type="submit">Show score visual example</button>
+</form>
+
+<div id="score-visual-result"></div>
 <script>
 
     const testResultsTable = document.getElementById('test-results-table');
@@ -210,12 +325,87 @@
                 "    <td>" + numOfPlayers +"</td>\n" +
                 "    <td>" + pair.status + "</td>\n" +
                 "    <td>" + status + "</td>\n" +
-                "    <td>" + (success ? "✅" : "❌") + "</td>" +
+                "    <td>" + (success ? "PASS" : "FAIL") + "</td>" +
                 "</tr>";
         }
 
         testResultsTable.innerHTML += html;
 
+    }
+
+    function renderVisualLeaderboard(leaderboard, hasPrize) {
+        const container = document.getElementById("leaderboard-visual-result");
+        container.innerHTML = "";
+
+        if (leaderboard.length === 0) {
+            container.innerHTML = "<li>No leaderboard entries returned.</li>";
+            return;
+        }
+
+        const titleElement = document.createElement("li");
+        titleElement.innerHTML = "<strong>Leaderboard</strong>";
+        container.appendChild(titleElement);
+
+        if (hasPrize) {
+            const prizeElement = document.createElement("li");
+            prizeElement.innerHTML = "<strong>Prize available</strong>";
+            container.appendChild(prizeElement);
+        }
+
+        leaderboard.forEach((entry, index) => {
+            const listItem = document.createElement("li");
+
+            listItem.innerHTML =
+                "<strong>Rank:</strong> " + (index + 1) +
+                " | <strong>Player:</strong> " + entry.player +
+                " | <strong>Score:</strong> " + entry.score;
+
+            container.appendChild(listItem);
+        });
+    }
+
+    async function showLeaderboardVisualExample() {
+        const sizeField = document.getElementById("visual-leaderboard-size");
+        const sortedField = document.getElementById("visual-leaderboard-sorted");
+        const prizeField = document.getElementById("visual-leaderboard-prize");
+        const size = sizeField.value.trim();
+        const sorted = sortedField.checked;
+        const hasPrize = prizeField.checked;
+
+        let url = "https://codecyprus.org/th/test-api/leaderboard";
+        let params = [];
+
+        if (size !== "") {
+            params.push("size=" + encodeURIComponent(size));
+        }
+
+        if (sorted) {
+            params.push("sorted=true");
+        }
+
+        if (hasPrize) {
+            params.push("hasPrize=true");
+        }
+
+        if (params.length > 0) {
+            url += "?" + params.join("&");
+        }
+
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
+
+            if (json.status === "OK") {
+                renderVisualLeaderboard(json.leaderboard, hasPrize);
+            } else {
+                document.getElementById("leaderboard-visual-result").innerHTML =
+                    "<li>API Error: " + json.errorMessages + "</li>";
+            }
+        }
+        catch (error) {
+            document.getElementById("leaderboard-visual-result").innerHTML =
+                "<li>Network Error: " + error + "</li>";
+        }
     }
 
     // /list test functions (added without changing leaderboard functions)
@@ -278,11 +468,52 @@
                 "    <td>" + listSize + "</td>\n" +
                 "    <td>" + pair.status + "</td>\n" +
                 "    <td>" + status + "</td>\n" +
-                "    <td>" + (success ? "✅" : "❌") + "</td>" +
+                "    <td>" + (success ? "PASS" : "FAIL") + "</td>" +
                 "</tr>";
         }
 
         listTestResultsTable.innerHTML += html;
+    }
+
+    function renderVisualTreasureHunts(list) {
+        const container = document.getElementById("list-visual-result");
+        container.innerHTML = "";
+
+        if (list.length === 0) {
+            container.innerHTML = "<p>No treasure hunts returned.</p>";
+            return;
+        }
+
+        list.forEach(hunt => {
+            const option = document.createElement("label");
+            option.className = "TreasureHuntOption";
+            option.innerHTML = `
+            <input type="radio" name="VisualTreasureHunt" value="${hunt.uuid}">
+            ${hunt.name}
+        `;
+            container.appendChild(option);
+        });
+    }
+
+    async function showListVisualExample() {
+        const numberField = document.getElementById("visual-number-of-ths");
+        const raw = numberField.value.trim();
+        const value = raw === "" ? null : raw;
+        const output = document.getElementById("list-visual-result");
+
+        try {
+            const response = await fetch(buildListUrl(value));
+            const json = await response.json();
+
+            if (json.status === "OK") {
+                renderVisualTreasureHunts(json.treasureHunts);
+            } else {
+                output.innerHTML = "<p>API Error: " + json.errorMessages + "</p>";
+            }
+        }
+        catch (error) {
+            output.innerHTML = "<p>Network Error: " + error + "</p>";
+        }
     }
 
     //start test
@@ -329,7 +560,7 @@
                 "    <td>" + pair.label + "</td>\n" +
                 "    <td>" + pair.status + "</td>\n" +
                 "    <td>" + status + "</td>\n" +
-                "    <td>" + (success ? "✅" : "❌") + "</td>\n" +
+                "    <td>" + (success ? "PASS" : "FAIL") + "</td>\n" +
                 "</tr>";
         }
         startTestResultsTable.innerHTML += html;
@@ -413,12 +644,324 @@
                 "    <td>" + requiresLocation + "</td>\n" +
                 "    <td>" + pair.status + "</td>\n" +
                 "    <td>" + status + "</td>\n" +
-                "    <td>" + (success ? "✅" : "❌") + "</td>\n" +
+                "    <td>" + (success ? "PASS" : "FAIL") + "</td>\n" +
                 "</tr>";
         }
         questionResultsTable.innerHTML += html;
     }
+
     // /start, /question visual tests
+    const answerResultsTable = document.getElementById("answer-test-results-table");
+
+    const answerTestPairs = [
+        {
+            correct: false,
+            completed: false,
+            expired: false,
+            status: "OK",
+            label: "wrong answer",
+            expectedCompleted: false
+        },
+        {
+            correct: true,
+            completed: false,
+            expired: false,
+            status: "OK",
+            label: "correct answer",
+            expectedCompleted: false
+        },
+        {
+            correct: true,
+            completed: true,
+            expired: false,
+            status: "OK",
+            label: "completed session",
+            expectedCompleted: true
+        },
+        {
+            correct: false,
+            completed: false,
+            expired: true,
+            status: "ERROR",
+            label: "expired session",
+            expectedCompleted: null
+        }
+    ];
+
+    function buildAnswerUrl(pair) {
+        const base = "https://codecyprus.org/th/test-api/answer";
+        let params = [];
+
+        if (pair.correct) {
+            params.push("correct=true");
+        }
+
+        if (pair.completed) {
+            params.push("completed=true");
+        }
+
+        if (pair.expired) {
+            params.push("expired=true");
+        }
+
+        if (params.length === 0) {
+            return base;
+        }
+
+        return base + "?" + params.join("&");
+    }
+
+    async function getAnswer() {
+        let html = "";
+
+        for (let pair of answerTestPairs) {
+            const response = await fetch(buildAnswerUrl(pair));
+            const json = await response.json();
+            const status = json.status;
+            let completed = null;
+
+            if (status === "OK") {
+                completed = json.completed;
+            }
+
+            let success = true;
+
+            if (status !== pair.status) {
+                success = false;
+            }
+
+            if (pair.expectedCompleted !== null && completed !== pair.expectedCompleted) {
+                success = false;
+            }
+
+            html += "<tr>" +
+                "    <td>" + pair.label + "</td>\n" +
+                "    <td>" + pair.expectedCompleted + "</td>\n" +
+                "    <td>" + completed + "</td>\n" +
+                "    <td>" + pair.status + "</td>\n" +
+                "    <td>" + status + "</td>\n" +
+                "    <td>" + (success ? "PASS" : "FAIL") + "</td>\n" +
+                "</tr>";
+        }
+
+        answerResultsTable.innerHTML += html;
+    }
+
+    async function showAnswerVisualExample() {
+        const correct = document.getElementById("visual-answer-correct").checked;
+        const completed = document.getElementById("visual-answer-completed").checked;
+        const expired = document.getElementById("visual-answer-expired").checked;
+        const output = document.getElementById("answer-visual-result");
+
+        let params = [];
+
+        if (correct) {
+            params.push("correct=true");
+        }
+
+        if (completed) {
+            params.push("completed=true");
+        }
+
+        if (expired) {
+            params.push("expired=true");
+        }
+
+        let url = "https://codecyprus.org/th/test-api/answer";
+
+        if (params.length > 0) {
+            url += "?" + params.join("&");
+        }
+
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
+
+            if (json.status === "OK") {
+                output.innerHTML =
+                    "<p><strong>Status:</strong> " + json.status + "</p>" +
+                    "<p><strong>Message:</strong> " + json.message + "</p>" +
+                    "<p><strong>Completed:</strong> " + json.completed + "</p>";
+            } else {
+                output.innerHTML =
+                    "<p><strong>Status:</strong> " + json.status + "</p>" +
+                    "<p><strong>Error:</strong> " + json.errorMessages + "</p>";
+            }
+        }
+        catch (error) {
+            output.innerHTML = "<p>Network Error: " + error + "</p>";
+        }
+    }
+
+    const scoreResultsTable = document.getElementById("score-test-results-table");
+
+    const scoreTestPairs = [
+        {
+            score: 42,
+            completed: false,
+            finished: false,
+            error: false,
+            status: "OK",
+            label: "default 42"
+        },
+        {
+            score: 100,
+            completed: true,
+            finished: false,
+            error: false,
+            status: "OK",
+            label: "completed score"
+        },
+        {
+            score: 500,
+            completed: true,
+            finished: true,
+            error: false,
+            status: "OK",
+            label: "finished score"
+        },
+        {
+            score: 10,
+            completed: false,
+            finished: false,
+            error: true,
+            status: "ERROR",
+            label: "error case"
+        }
+    ];
+
+    function buildScoreUrl(pair) {
+        const base = "https://codecyprus.org/th/test-api/score";
+        let params = [];
+
+        if (pair.score !== null) {
+            params.push("score=" + encodeURIComponent(pair.score));
+        }
+
+        if (pair.completed) {
+            params.push("completed=true");
+        }
+
+        if (pair.finished) {
+            params.push("finished=true");
+        }
+
+        if (pair.error) {
+            params.push("error=true");
+        }
+
+        if (params.length === 0) {
+            return base;
+        }
+
+        return base + "?" + params.join("&");
+    }
+
+    async function getScore() {
+        let html = "";
+
+        for (let pair of scoreTestPairs) {
+            const response = await fetch(buildScoreUrl(pair));
+            const json = await response.json();
+            const status = json.status;
+
+            let score = null;
+            let completed = null;
+            let finished = null;
+
+            if (status === "OK") {
+                score = json.score;
+                completed = json.completed;
+                finished = json.finished;
+            }
+
+            let success = true;
+
+            if (status !== pair.status) {
+                success = false;
+            }
+
+            if (status === "OK") {
+                if (score != pair.score) {
+                    success = false;
+                }
+                if (completed != pair.completed) {
+                    success = false;
+                }
+                if (finished != pair.finished) {
+                    success = false;
+                }
+            }
+
+            html += "<tr>" +
+                "    <td>" + pair.label + "</td>\n" +
+                "    <td>" + pair.score + "</td>\n" +
+                "    <td>" + score + "</td>\n" +
+                "    <td>" + pair.completed + "</td>\n" +
+                "    <td>" + completed + "</td>\n" +
+                "    <td>" + pair.finished + "</td>\n" +
+                "    <td>" + finished + "</td>\n" +
+                "    <td>" + pair.status + "</td>\n" +
+                "    <td>" + status + "</td>\n" +
+                "    <td>" + (success ? "PASS" : "FAIL") + "</td>\n" +
+                "</tr>";
+        }
+
+        scoreResultsTable.innerHTML += html;
+    }
+
+    async function showScoreVisualExample() {
+        const scoreField = document.getElementById("visual-score-value");
+        const completed = document.getElementById("visual-score-completed").checked;
+        const finished = document.getElementById("visual-score-finished").checked;
+        const error = document.getElementById("visual-score-error").checked;
+        const output = document.getElementById("score-visual-result");
+
+        const rawScore = scoreField.value.trim();
+        let params = [];
+
+        if (rawScore !== "") {
+            params.push("score=" + encodeURIComponent(rawScore));
+        }
+
+        if (completed) {
+            params.push("completed=true");
+        }
+
+        if (finished) {
+            params.push("finished=true");
+        }
+
+        if (error) {
+            params.push("error=true");
+        }
+
+        let url = "https://codecyprus.org/th/test-api/score";
+
+        if (params.length > 0) {
+            url += "?" + params.join("&");
+        }
+
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
+
+            if (json.status === "OK") {
+                output.innerHTML =
+                    "<p><strong>Status:</strong> " + json.status + "</p>" +
+                    "<p><strong>Score:</strong> " + json.score + "</p>" +
+                    "<p><strong>Completed:</strong> " + json.completed + "</p>" +
+                    "<p><strong>Finished:</strong> " + json.finished + "</p>";
+            } else {
+                output.innerHTML =
+                    "<p><strong>Status:</strong> " + json.status + "</p>" +
+                    "<p><strong>Error:</strong> " + json.errorMessages + "</p>";
+            }
+        }
+        catch (error) {
+            output.innerHTML = "<p>Network Error: " + error + "</p>";
+        }
+    }
     async function StartVisualExample(){
         const playerField=document.getElementById("playertest");
         const playerName=playerField.value.trim();
@@ -523,14 +1066,12 @@
         }
     }
     getLeaderboard();
-    getList();
-    getStart();
+getList();
+getStart();
 getQuestion();
+getAnswer();
+getScore();
 </script>
-
-
 
 </body>
 </html>
-
-
