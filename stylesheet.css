@@ -216,19 +216,23 @@ p {
 
 footer {
     width: 100%;
-    max-width: 1200px;
-    margin: auto auto 0;
-    padding: 12px 0;
+    margin: 0;
+    padding: 20px 0;
     background: radial-gradient(
-            circle at center,
-            #3a3a3a 0%,
-            #1a1a1a 40%,
-            #000000 80%
+        circle at center,
+        #3a3a3a 0%,
+        #1a1a1a 40%,
+        #000000 80%
     );
     color: #e8e8e8;
     border-top: 1px solid rgba(0, 255, 136, 0.35);
     position: relative;
     z-index: 1;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 footer p {
