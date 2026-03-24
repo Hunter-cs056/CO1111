@@ -468,6 +468,8 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
 function disableButtons(value){
     document.getElementById("SubmitAnswerBtn").disabled = value;
     document.getElementById("SkipAnswerBtn").disabled = value;
+    document.getElementsByClassName("mcqBtn").disabled = value;
+    document.getElementsByClassName("boolBtn").disabled = value;
 }
 
 /* ===========================
