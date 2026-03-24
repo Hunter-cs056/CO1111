@@ -468,8 +468,11 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
 function disableButtons(value){
     document.getElementById("SubmitAnswerBtn").disabled = value;
     document.getElementById("SkipAnswerBtn").disabled = value;
-    document.getElementsByClassName("mcqBtn").disabled = value;
-    document.getElementsByClassName("boolBtn").disabled = value;
+    //Using the same strategy on classes worn work because:
+    // getElementsByClassName returns a list of elements on which .disable does not work
+    //So we have to use querySelectorAll to loop through each element individually
+    document.querySelectorAll(".mcqBtn").forEach(btn => btn.disabled = value);
+    document.querySelectorAll(".boolBtn").forEach(btn => btn.disabled = value);
 }
 
 /* ===========================
