@@ -148,6 +148,8 @@ async function loadQuestion() {
         }
         //Check if the selected treasureHunt is already completed
         if(data.completed){
+            //Clear the saved session so the resume prompt does not appear on our next visit
+            clearGameCookies();
             //Inform the user
             document.getElementById("QuestionText").innerText="You have completed this TreasureHunt!";
             //Empty out any question options
@@ -468,6 +470,18 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
 function disableButtons(value){
     document.getElementById("SubmitAnswerBtn").disabled = value;
     document.getElementById("SkipAnswerBtn").disabled = value;
+}
+
+/* ===========================
+   CLEAR GAME COOKIES
+   ========================== */
+function clearGameCookies(){
+    //Doing this will clear the browser cookie by expiring its date
+    setCookie("sessionID","",-1);
+    setCookie("playerName","",-1);
+    //But we also have to clear our variables by setting them to Null
+    sessionId= null;
+    playerName=null;
 }
 
 
