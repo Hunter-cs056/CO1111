@@ -94,7 +94,7 @@ async function startModal() {
         return;
     }
     playerName = name;
-    setCookie("playerName", playerName);
+    setCookie("playerName", playerName,1);
     closeModal();
 
     try {
@@ -105,7 +105,7 @@ async function startModal() {
 
         if (data.status === "OK") {
             sessionId = data.session;
-            setCookie("sessionID", sessionId);
+            setCookie("sessionID", sessionId,1);
 
             document.getElementById("SelectionArea").style.display = "none";
             document.getElementById("GameArea").style.display = "block";
