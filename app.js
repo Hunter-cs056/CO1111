@@ -492,7 +492,7 @@ async function continueGame(){
     }
 
     //If a session cookie exist, show the modal and the playerName if we have it
-    const previousName = playerName? `(Player ${playerName})` : "";
+    const previousName = playerName? `Player ${playerName}` : "";
     document.getElementById("resumeModalText").textContent = `Hey ${previousName}! A previous session was found.
     Would you like to continue where you left off?`;
     document.getElementById("ResumeModal").style.display = "flex";
