@@ -720,7 +720,6 @@ main::after {
     box-shadow: none;
 }
 #ResumeModal  #resumeModalText {
-    width:100%;
     padding: 8px;
     border: 2px solid #00ff88;
     background: #000000;
@@ -731,6 +730,7 @@ main::after {
     font-family: 'Press Start 2P', monospace;
     font-size: 11px;
     box-shadow: none;
+    width:100%;
     display: flex;
     justify-content: center;
 }
