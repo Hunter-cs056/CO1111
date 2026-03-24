@@ -720,7 +720,7 @@ main::after {
     box-shadow: none;
 }
 #ResumeModal  #resumeModalText {
-    width: 100%;
+    width:100%;
     padding: 8px;
     border: 2px solid #00ff88;
     background: #000000;
