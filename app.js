@@ -3,7 +3,7 @@
    ========================== */
 let sessionId = getCookie("sessionID");
 let selectedTreasureHunt = null;
-let playerName = null;
+let playerName = getCookie("playerName");
 
 //Standard API URL part
 const API_LINK= "https://codecyprus.org/th/api";
