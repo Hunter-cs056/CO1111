@@ -486,7 +486,10 @@ function clearGameCookies(){
    ========================== */
 async function continueGame(){
     //Only show if a saved session cookie actually exists
-    if(!sessionId || sessionId ==="")return;
+    if(!sessionId || sessionId ===""){
+        document.getElementById("SelectionArea").style.display = "block";
+        return;
+    }
 
     //If a session cookie exist, show the modal and the playerName if we have it
     const previousName = playerName? `(Player ${playerName})` : "";
@@ -517,6 +520,7 @@ document.getElementById("resumeYesBtn").addEventListener("click", ()=>{
 //If the player chooses to start a new session, close the modal,clear the cookies and let him choose the TrHunt he wants
 document.getElementById("resumeNoBtn").addEventListener("click", ()=>{
     document.getElementById("ResumeModal").style.display = "none";
+    document.getElementById("SelectionArea").style.display = "block";
     clearGameCookies();
 })
 
@@ -531,8 +535,8 @@ document.getElementById("resumeNoBtn").addEventListener("click", ()=>{
 /* ===========================
    INITIAL LOAD(WHEN APP LAUNCHES)
    ========================== */
-getTreasureHunts();
 continueGame();
+getTreasureHunts();
 // cookie functions 
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
