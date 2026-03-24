@@ -438,9 +438,7 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
         //Add the filled list item to the container
         container.appendChild(listItem);
     });
-    //Hide the other UI sections
-    //document.getElementById("SelectionArea").style.display = "none";
-    //document.getElementById("GameArea").style.display = "none";
+
 
     
 }
@@ -483,6 +481,20 @@ function clearGameCookies(){
     sessionId= null;
     playerName=null;
 }
+/* ===========================
+   CONTINUE GAME FUNCTION
+   ========================== */
+async function continueGame(){
+    //Only show if a saved session cookie actually exists
+    if(!sessionId || sessionId ==="")return;
+
+    //If a session cookie exist, show the modal and the playerName if we have it
+    const previousName = playerName? `(Player ${playerName})` : "";
+    document.getElementById("resumeModalText").textContent = `Hey ${previousName}! A previous session was found.
+    Would you like to continue where you left off?`;
+    document.getElementById("ResumeModal").style.display = "flex;";
+}
+
 
 
 /* ===========================
@@ -493,6 +505,21 @@ document.getElementById("startbutton").addEventListener("click", startModal);
 document.getElementById("cancelbutton").addEventListener("click",closeModal);
 document.getElementById("leaderboardbtn").addEventListener("click",openLeaderBoardModal);
 document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLeaderBoardModal);
+
+//Continue Game Modal button event listeners
+//If the player chooses to load the previous session, hide the modal and the TrHunt selection and call the loadQuestion()
+document.getElementById("resumeYesBtn").addEventListener("click", ()=>{
+    document.getElementById("ResumeModal").style.display = "none";
+    document.getElementById("SelectionArea").style.display = "none";
+    document.getElementById("GameArea").style.display = "block";
+    loadQuestion();
+});
+//If the player chooses to start a new session, close the modal,clear the cookies and let him choose the TrHunt he wants
+document.getElementById("resumeNoBtn").addEventListener("click", ()=>{
+    document.getElementById("ResumeModal").style.display = "none";
+    clearGameCookies();
+})
+
 
 /* ===========================
    LINK BUTTONS
@@ -505,7 +532,7 @@ document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLe
    INITIAL LOAD(WHEN APP LAUNCHES)
    ========================== */
 getTreasureHunts();
-
+continueGame();
 // cookie functions 
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
