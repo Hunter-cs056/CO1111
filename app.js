@@ -492,7 +492,7 @@ async function continueGame(){
     const previousName = playerName? `(Player ${playerName})` : "";
     document.getElementById("resumeModalText").textContent = `Hey ${previousName}! A previous session was found.
     Would you like to continue where you left off?`;
-    document.getElementById("ResumeModal").style.display = "flex;";
+    document.getElementById("ResumeModal").style.display = "flex";
 }
 
 
