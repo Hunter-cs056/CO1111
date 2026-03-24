@@ -3,7 +3,7 @@
    ========================== */
 let sessionId = getCookie("sessionID");
 let selectedTreasureHunt = null;
-let playerName = null;
+let playerName = getCookie("playerName");
 
 //Standard API URL part
 const API_LINK= "https://codecyprus.org/th/api";
@@ -94,7 +94,7 @@ async function startModal() {
         return;
     }
     playerName = name;
-    setCookie("playerName", playerName);
+    setCookie("playerName", playerName,1);
     closeModal();
 
     try {
@@ -105,7 +105,7 @@ async function startModal() {
 
         if (data.status === "OK") {
             sessionId = data.session;
-            setCookie("sessionID", sessionId);
+            setCookie("sessionID", sessionId,1);
 
             document.getElementById("SelectionArea").style.display = "none";
             document.getElementById("GameArea").style.display = "block";
@@ -148,6 +148,8 @@ async function loadQuestion() {
         }
         //Check if the selected treasureHunt is already completed
         if(data.completed){
+            //Clear the saved session so the resume prompt does not appear on our next visit
+            clearGameCookies();
             //Inform the user
             document.getElementById("QuestionText").innerText="You have completed this TreasureHunt!";
             //Empty out any question options
@@ -436,9 +438,7 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
         //Add the filled list item to the container
         container.appendChild(listItem);
     });
-    //Hide the other UI sections
-    //document.getElementById("SelectionArea").style.display = "none";
-    //document.getElementById("GameArea").style.display = "none";
+
 
     
 }
@@ -470,6 +470,35 @@ function disableButtons(value){
     document.getElementById("SkipAnswerBtn").disabled = value;
 }
 
+/* ===========================
+   CLEAR GAME COOKIES
+   ========================== */
+function clearGameCookies(){
+    //Doing this will clear the browser cookie by expiring its date
+    setCookie("sessionID","",-1);
+    setCookie("playerName","",-1);
+    //But we also have to clear our variables by setting them to Null
+    sessionId= null;
+    playerName=null;
+}
+/* ===========================
+   CONTINUE GAME FUNCTION
+   ========================== */
+async function continueGame(){
+    //Only show if a saved session cookie actually exists
+    if(!sessionId || sessionId ===""){
+        document.getElementById("SelectionArea").style.display = "block";
+        return;
+    }
+
+    //If a session cookie exist, show the modal and the playerName if we have it
+    const previousName = playerName? `(Player ${playerName})` : "";
+    document.getElementById("resumeModalText").textContent = `Hey ${previousName}! A previous session was found.
+    Would you like to continue where you left off?`;
+    document.getElementById("ResumeModal").style.display = "flex";
+}
+
+
 
 /* ===========================
    EVENT LISTENER
@@ -479,6 +508,22 @@ document.getElementById("startbutton").addEventListener("click", startModal);
 document.getElementById("cancelbutton").addEventListener("click",closeModal);
 document.getElementById("leaderboardbtn").addEventListener("click",openLeaderBoardModal);
 document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLeaderBoardModal);
+
+//Continue Game Modal button event listeners
+//If the player chooses to load the previous session, hide the modal and the TrHunt selection and call the loadQuestion()
+document.getElementById("resumeYesBtn").addEventListener("click", ()=>{
+    document.getElementById("ResumeModal").style.display = "none";
+    document.getElementById("SelectionArea").style.display = "none";
+    document.getElementById("GameArea").style.display = "block";
+    loadQuestion();
+});
+//If the player chooses to start a new session, close the modal,clear the cookies and let him choose the TrHunt he wants
+document.getElementById("resumeNoBtn").addEventListener("click", ()=>{
+    document.getElementById("ResumeModal").style.display = "none";
+    document.getElementById("SelectionArea").style.display = "block";
+    clearGameCookies();
+})
+
 
 /* ===========================
    LINK BUTTONS
@@ -490,8 +535,8 @@ document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLe
 /* ===========================
    INITIAL LOAD(WHEN APP LAUNCHES)
    ========================== */
+continueGame();
 getTreasureHunts();
-
 // cookie functions 
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
