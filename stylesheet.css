@@ -723,7 +723,7 @@ main::after {
     padding: 8px;
     border: 2px solid #2600ff;
     background: #000000;
-    color: #00ff88;
+    color: #003cff;
     outline: none;
     border-radius: 6px;
     margin-bottom: 20px;
@@ -758,7 +758,7 @@ main::after {
     margin-bottom: 20px;
     font-size: 18px;
     letter-spacing: 1px;
-    color: #0015ff;
+    color: #00ff88;
     text-shadow: none;
 }
 
