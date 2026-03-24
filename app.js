@@ -268,10 +268,17 @@ async function submitAnswer(answerValue){
         document.getElementById("feedback").innerText=data.message;
         //Call the updateScore function
         updateScore();
-        // Load next question after 2 seconds
-        setTimeout(() => {
-            loadQuestion();
-        }, 2000);
+        if(data.correct){
+            // Load next question after 2 seconds
+            setTimeout(() => {
+                loadQuestion();
+            }, 2000);
+        }
+        else {
+            //Re-enable the buttons so the player can retry
+            disableButtons(false);
+        }
+
     }
     catch(error){
         console.error("Network Error: " + error);
