@@ -467,7 +467,7 @@ main::after {
 #startbutton:hover,
 #cancelbutton:hover,
 #closeLeaderboardBtn:hover,
-#leaderboardbtn:hover
+#leaderboardbtn:hover,
 #QRScanBtn:hover,
 #closeQRBtn:hover {
     transform: translateY(-3px) scale(1.02);
