@@ -262,6 +262,8 @@ async function submitAnswer(answerValue){
         const data = await response.json();
         if (data.status !== "OK") {
             console.error("Answer error:", data.errorMessages);
+            //Re-enable the buttons in case of on error
+            disableButtons(false);
             return;
         }
         //Show feedback
@@ -282,6 +284,8 @@ async function submitAnswer(answerValue){
     }
     catch(error){
         console.error("Network Error: " + error);
+        //Re-enable the buttons in case of an error
+        disableButtons(false);
     }
 }
 /* ===========================
