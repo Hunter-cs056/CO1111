@@ -4,6 +4,7 @@
 let sessionId = getCookie("sessionID");
 let selectedTreasureHunt = null;
 let playerName = getCookie("playerName");
+let score = getCookie("score");
 
 //Standard API URL part
 const API_LINK= "https://codecyprus.org/th/api";
@@ -163,6 +164,8 @@ async function loadQuestion() {
         //If no ERROR appears and the TrHunt is not completed already,the function will continue as expected
         //Call the createLeader Board
         createLeaderboard();
+        //Update the score here as well in case of a cookie
+        updateScore();
         //Display the question Text
         document.getElementById("QuestionText").innerHTML=data.questionText;
 
@@ -328,8 +331,10 @@ async function updateScore(){
             console.error("Score Error:", data.errorMessages);
             return;
         }
+        score = data.score;
+        setCookie("score", score,1);
         //Update Score being displayed.
-        document.getElementById("scoreDisplay").innerText = `Score: ${data.score}`;
+        document.getElementById("scoreDisplay").innerText = `Score: ${score}`;
     } catch (error){
         console.error("Network Error: " + error);
     }
@@ -493,9 +498,11 @@ function clearGameCookies(){
     //Doing this will clear the browser cookie by expiring its date
     setCookie("sessionID","",-1);
     setCookie("playerName","",-1);
+    setCookie("score","",-1);
     //But we also have to clear our variables by setting them to Null
     sessionId= null;
     playerName=null;
+    score = null;
 }
 /* ===========================
    CONTINUE GAME FUNCTION
@@ -512,6 +519,10 @@ async function continueGame(){
     document.getElementById("resumeModalText").textContent = `Hey ${previousName}! A previous session was found.
     Would you like to continue where you left off?`;
     document.getElementById("ResumeModal").style.display = "flex";
+
+    if (score){
+        document.getElementById("scoreDisplay").innerText = `Score: ${score}`;
+    }
 }
 
 
