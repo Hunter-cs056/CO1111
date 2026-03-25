@@ -5,6 +5,9 @@ let sessionId = getCookie("sessionID");
 let selectedTreasureHunt = null;
 let playerName = getCookie("playerName");
 let score = getCookie("score");
+let qrCameras= [];
+let qrCurrentCameraIndex=0;
+let qrScanner=null;
 
 //Standard API URL part
 const API_LINK= "https://codecyprus.org/th/api";
@@ -215,6 +218,8 @@ async function loadQuestion() {
                 answerArea.innerHTML=`<input type="text" id="answerInput">`;
                 break;
         }
+        //Makes the QR button visible whenever a question is loaded
+        showQRScanBtn(true)
         //Skip button functionality that calls the skipQuestion() function
         const skipBtn = document.getElementById("SkipAnswerBtn");
         skipBtn.onclick = () =>{
@@ -455,8 +460,6 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
         container.appendChild(listItem);
     });
 
-
-    
 }
 
 
@@ -479,7 +482,7 @@ function renderLeaderboard(leaderboard, treasureHuntName) {
     }
 
 /* ===========================
-   HELPER FUNCTIONS
+   DISABLE BUTTON FUNCTION
    ========================== */
 function disableButtons(value){
     document.getElementById("SubmitAnswerBtn").disabled = value;
@@ -525,16 +528,118 @@ async function continueGame(){
     }
 }
 
+/* ===========================
+   QR SCANNER INITIALIZER
+   ========================== */
+
+function initQRScanner() {
+    //Options for the scanner to use(scanner settings)
+    let opts = {
+        continuous: true,            //Default value - scans continuously for QR codes
+        video: document.getElementById('qr-preview'),   //Accesses the HTML element to display the camera preview
+        mirror: true,               //Mirrors the video preview shown on the device
+        captureImage: false,        //We do not want the imaged saved
+        backgroundScan: false,      //Reduces CPU usage when false
+        refractoryPeriod: 5000,     //A QR code can be scanned every 5000milliseconds(5 seconds)
+        scanPeriod: 1               //Default value to analyse frames between scans
+    };
+    //Initialise the scanner with our settings from above
+    qrScanner = new Instascan.Scanner(opts);
+
+    //Listen for a successful scan
+    qrScanner.addListener("scan", function(scannedContent){
+        console.log("QR scanned: ", scannedContent);
+        //Check if the scanned content is a URL link
+        let isURL = scannedContent.startsWith('http://') || scannedContent.startsWith('https://');
+
+        if (isURL){
+            //Display a clickable link in the result area that opens in a new tab
+            document.getElementById('qr-result').innerHTML= 'URL: <a href="' + scannedContent + '" target="_blank">' + scannedContent + '</a>';
+        }
+        else {
+            //Autofill the answer input with the scanned or Inserted text
+            let answerInput = document.getElementById("answerInput");
+            if (answerInput){
+                answerInput.value = scannedContent;
+                document.getElementById("qr-result").innerText = 'Inserted: ' + scannedContent;
+            }
+            else {
+                document.getElementById("qr-result").innerText = 'Scanned: ' + scannedContent;
+            }
+            //Automatically close the scanner after inserting the text
+            stopQRScanner();
+        }
+    });
+    //Load available cameras
+    Instascan.Camera.getCameras().then(function(foundCameras){
+        //Check if the
+        if(foundCameras.length > 0) {
+            qrCameras = foundCameras;   //Fill the empty array
+
+            //Disable the cycle camera buttons if only 1 camera is available
+            if (qrCameras.length === 1) {
+                document.getElementById("prevCamBtn").disabled = true;
+                document.getElementById("nextCamBtn").disabled = true;
+            }
+        }
+         //Display an error and remove the scanner button if no cameras are available
+        else {
+                console.error("QR Scanner: No cameras found.");
+                document.getElementById("QRScanBtn").style.display = 'none';
+        }
+    }).catch(function(e){
+        console.error("QR Scanner init error:", e)
+    });
+}
+
+/* ===========================
+   QR SCANNER - OPEN
+   ========================== */
+function openQRScanner(){
+    if(qrCameras.length ===0){
+        alert("No cameras available");      //If the camera array is empty inform the user
+        return;
+    }
+    document.getElementById("qr-result").innerHTML="";
+    document.getElementById("QRModal").style.display= "flex";
+    qrScanner.start(qrCameras[qrCurrentCameraIndex]);
+}
+/* ===========================
+   QR SCANNER - CLOSE
+   ========================== */
+function stopQRScanner(){
+    qrScanner.stop();
+    document.getElementById("QRModal").style.display ="none";
+}
+/* ===========================
+   QR SCANNER - SHOW/HIDE BUTTON
+   ========================== */
+function showQRScanBtn(visible){
+    document.getElementById("QRScanBtn").style.display = visible? "inline-block" : "none";
+}
+
+
+
 
 
 /* ===========================
-   EVENT LISTENER
+   EVENT LISTENERS
    ========================== */
 document.getElementById("submitTrHunt").addEventListener("click", startGame);
 document.getElementById("startbutton").addEventListener("click", startModal);
 document.getElementById("cancelbutton").addEventListener("click",closeModal);
 document.getElementById("leaderboardbtn").addEventListener("click",openLeaderBoardModal);
 document.getElementById("closeLeaderboardBtn").addEventListener("click", closeLeaderBoardModal);
+document.getElementById("QRScanBtn").addEventListener("click",openQRScanner)
+document.getElementById("closeQRBtn").addEventListener("click",stopQRScanner)
+document.getElementById("prevCamBtn").addEventListener("click",function (){
+    qrCurrentCameraIndex = (qrCurrentCameraIndex- 1 + qrCameras.length) % qrCameras.length;
+    qrScanner.start(qrCameras[qrCurrentCameraIndex]);
+});
+document.getElementById("nextCamBtn").addEventListener("click",function (){
+    qrCurrentCameraIndex = (qrCurrentCameraIndex+1) % qrCameras.length;
+    qrScanner.start(qrCameras[qrCurrentCameraIndex]);
+});
 
 //Continue Game Modal button event listeners
 //If the player chooses to load the previous session, hide the modal and the TrHunt selection and call the loadQuestion()
@@ -564,6 +669,7 @@ document.getElementById("resumeNoBtn").addEventListener("click", ()=>{
    ========================== */
 continueGame();
 getTreasureHunts();
+initQRScanner()
 // cookie functions 
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
