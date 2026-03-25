@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppPage</title>
-    <script src="instascan.min.js"></script> //Imported the InstaScan library from Week16 worksheet
+    <script src="instascan.min.js"></script> <!--Imported the InstaScan library from Week16 worksheet-->
     <!--<link rel="stylesheet" href="ss.css">-->
    <link rel="stylesheet" href="stylesheet.css">
 </head>
@@ -25,6 +25,19 @@
         <p id="resumeModalText">A previous session was found. Would you like to continue where you left off?</p>
         <button id="resumeYesBtn">Continue Game</button>
         <button id="resumeNoBtn">No</button>
+    </div>
+</div>
+<!--QR Scanner Modal -->
+<div id="QRModal" style="display: none;">
+    <div class="modal-content">
+        <h3>QR Code Scanner</h3>
+        <video id="qr-preview"></video>
+        <div id="camera-controls">
+            <button id ="prevCamBtn">&#9664; Prev</button>
+            <button id ="nextCamBtn">Next &#9654;</button>
+        </div>
+        <div id="qr-result"></div>
+        <button id="closeQRBtn">Close Scanner</button>
     </div>
 </div>
 <!--This Section is for the Navigation Bar/ Header-->
@@ -63,6 +76,7 @@
         <button id ="SendLocationBtn" style="display: none">Share Location</button>
 <br>
         <br>
+        <button id ="QRScanBtn" style="display: none;">&#128247; Scan QR</button>
         <div id="scoreDisplay">Score: 0</div>
         <button id="leaderboardbtn">View Leaderboard</button>
         <div id="feedback"></div>
