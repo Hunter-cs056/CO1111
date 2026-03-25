@@ -162,6 +162,7 @@ async function loadQuestion() {
             document.getElementById("SubmitAnswerBtn").style.display="none";
             document.getElementById("SkipAnswerBtn").style.display="none";
             document.getElementById("SendLocationBtn").style.display="none";
+            showQRScanBtn(false);
             return;
         }
         //If no ERROR appears and the TrHunt is not completed already,the function will continue as expected
@@ -307,6 +308,7 @@ async function skipQuestion(){
         const data = await response.json();
         if (data.status !== "OK") {
             console.error("Skip Error:", data.errorMessages);
+            disableButtons(false);
             return;
         }
         //Display feedback message
