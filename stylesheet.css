@@ -906,7 +906,7 @@ main::after {
     background-color: #041a12;
     border: 2px solid #00ff88;
     padding: 30px;
-    width: 340px;
+    width: 600px;
     border-radius: 12px;
     text-align: center;
     color: #00ff88;
@@ -925,7 +925,7 @@ main::after {
 #qr-preview{
     display: block;
     width: 100%;
-    max-width: 400px;
+    max-width: 460px;
     border-radius: 8px;
     margin: 10px auto;
     border: 2px solid #00ff88;
@@ -943,7 +943,7 @@ main::after {
 }
 #prevCamBtn,
 #nextCamBtn{
-    padding: 8px 14px;
+    padding: 10px 20px;
     border: 2px solid #00ff88;
     border-radius:10px;
     background: linear-gradient(145deg, #1a1a1a, #101010);
