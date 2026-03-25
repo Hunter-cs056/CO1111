@@ -439,7 +439,9 @@ main::after {
 #startbutton,
 #cancelbutton,
 #closeLeaderboardBtn,
-#leaderboardbtn {
+#leaderboardbtn,
+#QRScanBtn,
+#closeQRBtn {
     display: block;
     width: 240px;
     margin: 14px auto;
@@ -465,7 +467,9 @@ main::after {
 #startbutton:hover,
 #cancelbutton:hover,
 #closeLeaderboardBtn:hover,
-#leaderboardbtn:hover {
+#leaderboardbtn:hover
+#QRScanBtn:hover,
+#closeQRBtn:hover {
     transform: translateY(-3px) scale(1.02);
     border-color: #00ff88;
     color: #00ff88;
@@ -482,7 +486,9 @@ main::after {
 #startbutton:active,
 #cancelbutton:active,
 #closeLeaderboardBtn:active,
-#leaderboardbtn:active {
+#leaderboardbtn:active
+#QRScanBtn:active,
+#closeQRBtn:active{
     transform: scale(0.98);
 }
 
@@ -882,6 +888,125 @@ main::after {
 #closeLeaderboardBtn:hover{
     box-shadow:0 0 10px #00ff88;
 }
+/* ===========================
+   QR SCANNER  MODAL
+   ========================== */
+#QRModal{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+}
+/* ===========================
+   QR SCANNER  MODAL - CONTENT BOX
+   ========================== */
+#QRModal .modal-content{
+    background-color: #041a12;
+    border: 2px solid #00ff88;
+    padding: 30px;
+    width: 3400px;
+    border-radius: 12px;
+    text-align: center;
+    color: #00ff88;
+    box-shadow: 0 0 20px #00ff88;
+}
+#QRModal .modal-content h3{
+    margin-bottom: 16px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #00ff88;
+    text-shadow: none;
+}
+/* ===========================
+   QR SCANNER  VIDEO  PREVIEW
+   ========================== */
+#qr-preview{
+    display: block;
+    width: 100%;
+    height: 280%;
+    border-radius: 8px;
+    margin: 10px auto;
+    border: 2px solid #00ff88;
+    box-shadow:0 0 12px rgba(0, 255, 136, 0.25);
+}
+
+/* ===========================
+   QR SCANNER  CAMERA CONTROLS
+   ========================== */
+#camera-controls{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+#prevCamBtn,
+#nextCamBtn{
+    padding: 8px 14px;
+    border: 2px solid #00ff88;
+    border-radius:10px;
+    background: linear-gradient(145deg, #1a1a1a, #101010);
+    color: white;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.03),
+            0 6px 16px rgba(0, 0, 0, 0.35),
+            0 0 10px rgba(0, 255, 136, 0.10);
+}
+#prevCamBtn:hover,
+#nextCamBtn:hover{
+    color:#00ff88;
+    border-color: #00ff88;
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.04),
+            0 10px 22px rgba(0, 0, 0, 0.45),
+            0 0 16px rgba(0, 255, 136, 0.25);
+}
+#prevCamBtn:disabled,
+#nextCamBtn:disabled{
+    opacity:0.35;
+    cursor: not-allowed;
+    transform:none;
+    box-shadow: none;
+}
+/* ===========================
+   QR SCANNER  RESULT AREA
+   ========================== */
+#qr-result{
+    margin: 12px 0 4px;
+    font-size: 9px;
+    word-break: break-all;
+    color: #cccccc;
+    min-height: 18px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+#qr-result a{
+    color:#00ff88;
+    text-decoration: underline;
+}
+
+/* ===========================
+   QR SCANNER  MOBILE BREAKPOINT
+   ========================== */
+@media (max-width:800px) {
+    #QRModal .modal-content{
+        width: 92em;
+        padding: 20px 16px;
+    }
+    #qr-preview{
+        max-width: 100%
+    }
+    #prevCamBtn,
+    #nextCamBtn{
+        font-size: 8px;
+        padding: 7px 10px;
+    }
+}
+
 @media (max-width: 600px) {
     #leaderdoard-content{
         right:10px;
