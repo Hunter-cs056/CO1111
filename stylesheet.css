@@ -1010,7 +1010,9 @@ main::after {
         padding: 7px 10px;
     }
 }
-
+/* ===========================
+   LEADERBOARD MOBILE BREAKPOINT
+   ========================== */
 @media (max-width: 600px) {
     #leaderdoard-content{
         right:10px;
@@ -1032,3 +1034,79 @@ main::after {
         padding:10px;
     }
 }
+
+/* ===========================
+   FINAL LEADERBOARD(shown on completion)
+   ========================== */
+#finalLeaderboard{
+    margin : 30px auto;
+    width:90%;
+    max-width:600px;
+}
+#finalLeaderboard h3{
+    color:#00ff88;
+    font-size:14px;
+    margin-bottom:16px;
+}
+#finalLeaderboardList{
+    list-style: none;
+    padding:0;
+    margin:0;
+    width:100%;
+}
+/*TreasureHunt title Row*/
+#finalLeaderboardList  .leaderboard-title{
+    color:#00ff88;
+    font-size:10px;
+    padding:10px 0;
+    border-bottom:2px solid #00ff88;
+    margin-bottom:4px;
+}
+
+/*Header Row*/
+#finalLeaderboardList .leaderboard-header{
+    display:grid;
+    grid-template-columns:40px 1fr 80px 160px;
+    padding: 8px 10px;
+    background: rgba(0, 255, 136, 0.08);
+    border-radius:6px;
+    margin-bottom:4px;
+    font-size: 9px;
+    color:#00ff88;
+}
+
+/*Player rows*/
+#finalLeaderboardList .leaderboard-item{
+    display:grid;
+    grid-template-columns:40px 1fr 80px 160px;
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(0, 230, 136, 0.15);
+    font-size: 9px;
+    color:#9ef0c0;
+    transition: background 0.2s ease;
+}
+
+#finalLeaderboardList .leaderboard-item:hover{
+    background: rgba(0, 255, 136, 0.05);
+
+}
+/* ===========================
+   FINAL LEADERBOARD - BREAKPOINT
+   ========================== */
+@media (max-width: 800px) {
+    #finalLeaderboard{
+        width: 100%;
+    }
+    #finalLeaderboardList .leaderboard-header,
+    #finalLeaderboardList .leaderboard-item{
+        grid-template-columns:30px 1fr 60px 90px;
+        font-size:7px;
+        padding:6px 6px;
+    }
+}
+
+
+
+
+
+

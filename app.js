@@ -152,8 +152,6 @@ async function loadQuestion() {
         }
         //Check if the selected treasureHunt is already completed
         if(data.completed){
-            //Clear the saved session so the resume prompt does not appear on our next visit
-            clearGameCookies();
             //Inform the user
             document.getElementById("QuestionText").innerText="You have completed this TreasureHunt!";
             //Empty out any question options
@@ -162,7 +160,13 @@ async function loadQuestion() {
             document.getElementById("SubmitAnswerBtn").style.display="none";
             document.getElementById("SkipAnswerBtn").style.display="none";
             document.getElementById("SendLocationBtn").style.display="none";
+            document.getElementById("leaderboardbtn").style.display="none";
             showQRScanBtn(false);
+            //Make the raw leaderboard appear, and we hide the modal leaderboard
+            document.getElementById("finalLeaderboard").style.display="block";
+            createLeaderboard("finalLeaderboardList");
+            //Clear the saved session so the resume prompt does not appear on our next visit
+            clearGameCookies();
             return;
         }
         //If no ERROR appears and the TrHunt is not completed already,the function will continue as expected
@@ -391,7 +395,7 @@ async function sendLocation() {
 /* ==========================
    LEADERBOARD FUNCTION
    ========================== */
-async function createLeaderboard () {
+async function createLeaderboard (containerId="leaderboardList") {
     try {
 
         //Make the API call
@@ -404,7 +408,7 @@ async function createLeaderboard () {
             return;
         }
         //Render leaderboard
-        renderLeaderboard(data.leaderboard, data.treasureHuntName);
+        renderLeaderboard(data.leaderboard, data.treasureHuntName,containerId);
     }
 
     catch (error) {
@@ -415,9 +419,9 @@ async function createLeaderboard () {
 /* ==========================
    DISPLAY THE LEADERBOARD
    ========================== */
-function renderLeaderboard(leaderboard, treasureHuntName) {
+function renderLeaderboard(leaderboard, treasureHuntName,containerId="leaderboardList") {
     //Gets the container where the leader board will be displayed
-    const container = document.getElementById("leaderboardList");
+    const container = document.getElementById(containerId);
 
     //Clear any existing content
     container.innerHTML = "";
