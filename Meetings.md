@@ -94,7 +94,7 @@ Goals Accomplished from last weeks
 3.**Alex** contributed to the test.html completing /start, /question
 4.**Maximos** Created social media for the team in Instagram/Facebook/X/YOUTUBE
 5.**Rania** made the app downloadable while connecting the social media with the website
-Goals for the upcoming week:
+`Goals for the upcoming week:`
 1.**Alex** will work on making the leaderboard a modal and then designing it
 2.**Maximos** will design and  create social posts to be added to the landing page, design and organise the test.html
 page, make the location retriever inside the app page to be updating automatically every 30 seconds.
@@ -114,6 +114,42 @@ file, look at the previous examples.
 by looking at the app.js and calling the API with the same way but using the test-api
 (link inside description on top of test.html).
 
+##OUR SIXTH MEETING:
+27/03/2026 Friday 1:15pm
+Participants: Maximos, Rania, Alex, Rudolf, George,
+Location: Uni Cafeteria
+Topic: THhe final touches to complete the project
+Goals Accomplished from last weeks:
+1.**Maximos** Added a QR code scanner to the project, added cookies and a resume session modal
+, and added a final leaderboard to the app,overall improved the functionality  and the flow of the
+game by applying visibility states to buttons and sections so they appear only when needed.Also added a play again button
+2.**Alex** Updated the leaderboard modal
+3.**Rania** and  **Alex** and **George**: Reconstructed the css for both the index and app pages
+4.**George** ended up completing the rest of the Unit test along with the visual examples
+***GOALS TO COMPLETE THE PROJECT***
+1.**Maximos** will make the location update every 30 seconds from the start of the TrHunt and also make the status of 
+the questions remaining available to the user
+2.**Rania** will adjust the about us section inside the landing page to include a list with our names and 
+responsibilities for the project, and then keep a small brief description of who we are on top of the list. Additionally,
+she will fix the TresureHunt list, so each treasureHunt is displayed one under the other. Also on the leaderboard Modal,
+the close button is to dark and not visible, it should be adjusted to become more visible.
+3.**George** will have to style  the test.html page divide into 3 sections:
+(1) Unit testing section(already done) - table
+(2) Nielson's 10 Usability Heuristics for User Interface Design(*Rudolf* will do it)  - table 
+(3)User Acceptance(*Alex* will do it) - table 
+The page when loaded, should/could Have a TreasureHunt Title testing on top and then under it 3 the Modal sections:
+The 3 buttons should always be visible at the top middle under the title, and only one section should be shown 
+each time. For example if the user pressed to see the section 1, The section one covers the entire screen(does not need
+to be a pop-up window) while the others are not visible.
+4.**Alex** after george provides you with your own modal section to work on, you will have to create the User Acceptance
+table. The user acceptance table should include least 10 people(friends-family-classmates) who played the app, and each one,
+tested a different feature on our app and provided information about their satisfaction(satisfied/dissatisfied).For example
+one user should test the submit/ skip buttons, another user has to try the leaderboard modal, another user the back to homepage
+button and so on until all features are covered
+5.**Rudolf** after george provides you with your own modal section to work on you will have to create a table for Nielsen's
+10 Usability Heuristics for the UI. On this link you will find the official ones listed:
+https://www.nngroup.com/articles/ten-usability-heuristics/ 
+After including each one, then you will just say for each one if is satisfied/dissatisfied by our application.
 
 
 
