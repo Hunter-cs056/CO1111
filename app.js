@@ -164,6 +164,8 @@ async function loadQuestion() {
             showQRScanBtn(false);
             //Make the raw leaderboard appear, and we hide the modal leaderboard
             document.getElementById("finalLeaderboard").style.display="block";
+            document.getElementById("playAgainBtn").style.display="block";
+            document.getElementById("feedback").style.display="none";
             createLeaderboard("finalLeaderboardList");
             //Clear the saved session so the resume prompt does not appear on our next visit
             clearGameCookies();

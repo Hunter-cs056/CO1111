@@ -441,7 +441,8 @@ main::after {
 #closeLeaderboardBtn,
 #leaderboardbtn,
 #QRScanBtn,
-#closeQRBtn {
+#closeQRBtn,
+#playAgainBtn{
     display: block;
     width: 240px;
     margin: 14px auto;
@@ -469,7 +470,8 @@ main::after {
 #closeLeaderboardBtn:hover,
 #leaderboardbtn:hover,
 #QRScanBtn:hover,
-#closeQRBtn:hover {
+#closeQRBtn:hover,
+#playAgainBtn:hover{
     transform: translateY(-3px) scale(1.02);
     border-color: #00ff88;
     color: #00ff88;
@@ -488,7 +490,8 @@ main::after {
 #closeLeaderboardBtn:active,
 #leaderboardbtn:active,
 #QRScanBtn:active,
-#closeQRBtn:active{
+#closeQRBtn:active,
+#playAgainBtn:active{
     transform: scale(0.98);
 }
 
