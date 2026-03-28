@@ -891,6 +891,13 @@ main::after {
 #closeLeaderboardBtn:hover{
     box-shadow:0 0 10px #00ff88;
 }
+
+#questionProgress{
+    color:#00ff88;
+    font-size:15px;
+    margin-bottom:10px;
+    letter-spacing: 1px;
+}
 /* ===========================
    QR SCANNER  MODAL
    ========================== */

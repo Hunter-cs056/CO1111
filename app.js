@@ -166,6 +166,7 @@ async function loadQuestion() {
             document.getElementById("finalLeaderboard").style.display="block";
             document.getElementById("playAgainBtn").style.display="block";
             document.getElementById("feedback").style.display="none";
+            document.getElementById("questionProgress").style.display="none";
             createLeaderboard("finalLeaderboardList");
             //Clear the saved session so the resume prompt does not appear on our next visit
             clearGameCookies();
@@ -174,6 +175,10 @@ async function loadQuestion() {
         //If no ERROR appears and the TrHunt is not completed already,the function will continue as expected
         //Call the createLeader Board
         createLeaderboard();
+        //Inform the user about the current question and the total number of questions
+        document.getElementById("questionProgress").innerText=
+            `Question ${data.currentQuestionIndex + 1} of ${data.numOfQuestions}`;
+
         //Update the score here as well in case of a cookie
         updateScore();
         //Display the question Text
