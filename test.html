@@ -15,8 +15,155 @@
 <head>
     <meta charset="UTF-8">
     <title>Leaderboard and List test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 32px 20px 48px;
+            background: #111111;
+            color: #f3f3f3;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        .test-page-title {
+            margin: 0 0 20px;
+            text-align: center;
+            font-size: 34px;
+        }
+
+        .test-nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 16px 0;
+            margin: 0 auto 28px;
+            background: #111111;
+        }
+
+        .test-nav-button {
+            min-width: 190px;
+            padding: 12px 18px;
+            border: 2px solid #1e8a5c;
+            border-radius: 10px;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .test-nav-button.active {
+            background: #1e8a5c;
+            border-color: #2dd48c;
+            color: #ffffff;
+        }
+
+        .test-section {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+            border: 1px solid #2a2a2a;
+            border-radius: 14px;
+            background: #181818;
+        }
+
+        .test-section.active-section {
+            display: block;
+        }
+
+        .section-heading {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .section-note {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #cfcfcf;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+            background: #202020;
+        }
+
+        th,
+        td {
+            border: 1px solid #3a3a3a;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #262626;
+        }
+
+        input,
+        select,
+        button {
+            margin: 6px 4px 6px 0;
+            padding: 8px 10px;
+            font-size: 14px;
+        }
+
+        label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 12px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .placeholder-cell {
+            color: #cfcfcf;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 20px 12px 32px;
+            }
+
+            .test-page-title {
+                font-size: 28px;
+            }
+
+            .test-nav-button {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .test-section {
+                padding: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
+
+<h1 class="test-page-title">TreasureHunt Testing</h1>
+
+<div class="test-nav">
+    <button type="button" class="test-nav-button active" onclick="showSection('unit-testing', this)">Unit Testing</button>
+    <button type="button" class="test-nav-button" onclick="showSection('heuristics', this)">Nielsen Heuristics</button>
+    <button type="button" class="test-nav-button" onclick="showSection('user-acceptance', this)">User Acceptance</button>
+</div>
+
+<section id="unit-testing" class="test-section active-section">
+    <h2 class="section-heading">Unit Testing</h2>
+    <p class="section-note">This section contains the API test tables and visual examples.</p>
 
 <p>Enter input:</p>
 
@@ -255,8 +402,33 @@
 </form>
 
 <div id="score-visual-result"></div>
+</section>
+
+<section id="heuristics" class="test-section">
+    <h2 class="section-heading">Nielsen's 10 Usability Heuristics</h2>
+</section>
+
+<section id="user-acceptance" class="test-section">
+    <h2 class="section-heading">User Acceptance</h2>
+</section>
+
 <script>
 
+    function showSection(sectionId, clickedButton) {
+        document.querySelectorAll(".test-section").forEach(section => {
+            section.classList.remove("active-section");
+        });
+
+        document.querySelectorAll(".test-nav-button").forEach(button => {
+            button.classList.remove("active");
+        });
+
+        document.getElementById(sectionId).classList.add("active-section");
+
+        if (clickedButton) {
+            clickedButton.classList.add("active");
+        }
+    }
     const testResultsTable = document.getElementById('test-results-table');
 
     testPairs = [
@@ -1075,3 +1247,7 @@ getScore();
 
 </body>
 </html>
+
+
+
+
