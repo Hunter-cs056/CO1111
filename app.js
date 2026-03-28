@@ -394,6 +394,36 @@ async function sendLocation() {
     });
 }
 
+/* ===========================
+   SILENT LOCATION UPDATER
+   ========================== */
+ function sendLocationSilent() {
+
+    if (!navigator.geolocation)  return;
+
+    navigator.geolocation.getCurrentPosition(async position => {
+        if(!sessionId) return; //Onload the app will ask for permission and skip waste the API call
+
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        try {
+            const response = await fetch(`${API_LINK}/location?session=${sessionId}&latitude=${lat}&longitude=${lon}`);
+            const data = await response.json();
+
+            if (data.status !== "OK") {
+                console.error("Silent Location Error: ", data.errorMessages);
+                return;
+            }
+            console.log("Location updated silently");
+        } catch (error) {
+            console.error("Silent Location Network Error:", error);
+        }
+    }, () => {
+        console.log("Please give access to location");
+    });
+}
+
 /* ==========================
    LEADERBOARD FUNCTION
    ========================== */
@@ -678,6 +708,15 @@ document.getElementById("resumeNoBtn").addEventListener("click", ()=>{
 continueGame();
 getTreasureHunts();
 initQRScanner()
+sendLocationSilent()                                //Will ask for location access on page load
+const sessionChecker = setInterval(()=>{        //Will check for sessionId every 10 seconds
+    if (sessionId){
+        setInterval(sendLocationSilent, 30000); //After a session exists, the location will silently update every 30 seconds silently
+
+        clearInterval(sessionChecker);                  //After the location interval is active, we disable the session checker.
+    }
+},10000);
+
 // cookie functions 
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
