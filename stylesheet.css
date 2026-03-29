@@ -884,7 +884,7 @@ main::after {
     border:2px solid #00ff88;
     border-radius:6px;
     background-color:white;
-    color:white; !important;
+    color:white !important;
     cursor:pointer;
     font-family: 'Press Start 2P',monospace;
     
