@@ -1134,7 +1134,7 @@ main::after {
     border-radius: 32px;
     padding: 0.7rem 1.2rem;
     margin: 0;
-    font-size: 13rem;
+    font-size: 13px;
     font-family: 'Press Start 2P', monospace;
     cursor: pointer;
     text-align: left;
