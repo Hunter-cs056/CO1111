@@ -151,9 +151,13 @@ button and so on until all features are covered
 https://www.nngroup.com/articles/ten-usability-heuristics/ 
 After including each one, then you will just say for each one if is satisfied/dissatisfied by our application.
 
-
-
-
+##OUR SEVENTH-FINAL MEETING:
+31/03/2026 Tuesday 2:16pm
+Participants: Maximos, Rania, Alex, Rudolf, George,
+Location: Online
+Topic Submission:
+All goals from last weeks have been accomplished, the project is ready for submission and aims for 100% and beyond marking!!
+Congrats to all team members!
 
 
 
