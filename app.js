@@ -131,11 +131,6 @@ async function startModal() {
     }
 }
 
-
-
-
-
-
 /* ===========================
    LOAD QUESTION
    ========================== */
@@ -701,28 +696,8 @@ document.getElementById("resumeNoBtn").addEventListener("click", ()=>{
 
 
 /* ===========================
-   LINK BUTTONS
+   COOKIE FUNCTIONS
    ========================== */
-//let links = document.getElementsByClassName("social-link")
-//links.setAttribute("target", "_blank");
-
-
-/* ===========================
-   INITIAL LOAD(WHEN APP LAUNCHES)
-   ========================== */
-continueGame();
-getTreasureHunts();
-initQRScanner()
-sendLocationSilent()                                //Will ask for location access on page load
-const sessionChecker = setInterval(()=>{        //Will check for sessionId every 10 seconds
-    if (sessionId){
-        setInterval(sendLocationSilent, 30000); //After a session exists, the location will silently update every 30 seconds silently
-
-        clearInterval(sessionChecker);                  //After the location interval is active, we disable the session checker.
-    }
-},10000);
-
-// cookie functions 
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
     date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
@@ -744,4 +719,17 @@ function getCookie(cName) {
   }
   return null;
 }
+/* ===========================
+   INITIAL LOAD(WHEN APP LAUNCHES)
+   ========================== */
+continueGame();
+getTreasureHunts();
+initQRScanner()
+sendLocationSilent()                                //Will ask for location access on page load
+const sessionChecker = setInterval(()=>{        //Will check for sessionId every 10 seconds
+    if (sessionId){
+        setInterval(sendLocationSilent, 30000); //After a session exists, the location will silently update every 30 seconds silently
 
+        clearInterval(sessionChecker);                  //After the location interval is active, we disable the session checker.
+    }
+},10000);
